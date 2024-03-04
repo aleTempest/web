@@ -9,4 +9,5 @@ $conn = new msqli($server_name,$username,$password, $db_name)
 if ($conn->connect_error) {
 	die("Conexión fallida" . $conn->connect_error)
 }
-> 
+
+echo 'hewo'
