@@ -12,5 +12,6 @@ if (isset($_POST[alta_alumno])) {
 	// Insert a la tabla
 	$sql = "INSERT INTO alumnos (matricula,nombre,edad,email,id_carrera) 
 		VALUES ('$matricula,$nombre,$edad,$email,$id_carrera')";
-	$res = $conn->query($sql)
+	$res = $conn->query($sql);
+	header("Location: listado.php");
 }
