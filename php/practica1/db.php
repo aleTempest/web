@@ -1,13 +1,14 @@
 <?
-// Conexion a la base de datos
-$server_name = "localhost";
+$servername = "db"; // docker
 $username = "ale";
 $password = "elaina";
-$db_name	= "universidad";
+$dbname = "unidad2";
 
-$conn = new msqli($server_name,$username,$password,$db_name);
+// Conexión a la base de datos
+$conn = new mysqli($servername, $username, $password,$dbname);
+
+// Check 
 if ($conn->connect_error) {
-	die("Conexión fallida");
+  die("Connection failed: " . $conn->connect_error);
 }
-
-echo 'hewo';
+?>

@@ -1,16 +1,15 @@
 <?
-include 'db.php'
+include 'db.php';
 // alta de alumnos
-if (isset($_POST[alta_alumno])) {
-	// Obtener los datos del formulario
+if (isset($_POST['alta_alumno'])) {
 	$matricula	= $_POST['matricula'];
-	$nombre			= $_POST['nombre'];
-	$edad				= $_POST['edad'];
-	$email			= $_POST['email'];
+	$nombre = $_POST['nombre'];
+	$edad = $_POST['edad'];
+	$email = $_POST['email'];
 	$id_carrera = $_POST['id_carrera'];
 
 	$sql = "INSERT INTO alumnos (matricula,nombre,edad,email,id_carrera) 
-		VALUES ('$matricula,$nombre,$edad,$email,$id_carrera')";
+		VALUES ('$matricula','$nombre','$edad','$email','$id_carrera')";
 	$res = $conn->query($sql);
 	header("Location: listado.php");
 }
@@ -26,10 +25,10 @@ if (isset($_GET['eliminar_alumnos'])) {
 // modificar alumnos
 if (isset($_POST['cambio_alumno'])) {
 	$id = $_POST['id_alumno'];
-	$matricula	= $_POST['matricula'];
-	$nombre			= $_POST['nombre'];
-	$edad				= $_POST['edad'];
-	$email			= $_POST['email'];
+	$matricula = $_POST['matricula'];
+	$nombre = $_POST['nombre'];
+	$edad = $_POST['edad'];
+	$email = $_POST['email'];
 	$id_carrera = $_POST['id_carrera'];
 	$sql = "UPDATE alumnos SET 
 		matricula = '$matricula',
@@ -39,7 +38,7 @@ if (isset($_POST['cambio_alumno'])) {
 		id_carrera = '$id_carrera'
 		WHERE id = $id";
 	$res = $conn->query($sql);
-	header("Location: listado.php")
+	header("Location: listado.php");
 }
 
 // alta de carrera
@@ -47,7 +46,7 @@ if (isset($_POST['alta_carrera'])) {
 	$nombre = $_POST['nombre_carrera'];
 	$sql = "INSERT INTO carreras (nombre) VALUES ($nombre)";
 	$res = $conn->query($sql);
-	header("Location: listado_carreras.php")
+	header("Location: listado_carreras.php");
 }
 
 // baja de carrera
@@ -61,7 +60,8 @@ if (isset($_GET['baja_carrera'])) {
 // modificar carrera
 if (isset($_POST['cambio_carrera'])) {
 	$id = $_POST['id_carrera'];
-	$nombre = $_POST['nombre_carrera'];
-	$res = $con->query($sql);
+	$nombre = $_POST['nombre'];
+	$sql = "UPDATE carrera SET nombre = '$nombre' WHERE id_carrera = $id";
+	$res = $conn->query($sql);
 	header("Location: listado_carreras.php");
 }
