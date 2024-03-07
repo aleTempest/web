@@ -8,7 +8,7 @@ $table_headers = Array(
     "Email",
     "Edad",
     "Carrera",
-    "Cambios"
+    "Controles"
 );
 
 $dao = new StudentDao($servername,$username,$password,$dbname);
@@ -35,13 +35,13 @@ $students = $dao->getAllStudents();
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Carreras <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="career_list.php">Carreras <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="student_list.php">Alumnos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Materias</a>
+                <a class="nav-link disabled" href="subject_list.php">Materias</a>
             </li>
         </ul>
     </div>
@@ -63,7 +63,6 @@ $students = $dao->getAllStudents();
         for ($i = 0; $i < count($students); $i++) {
             $controls = array(
                 "button_delete" => '<button type="submit" name="delete_student" value="' . $students[$i]->getId() . '" class="btn btn-danger">Eliminar</button>',
-                // "button_edit" => '<button type="submit" class="btn btn-primary" value="' . $students[$i]->toMap() . '">Editar</button>' // Esta opcion requeriría tokenizar en el crud
                 "button_edit" => '<a href="edit_student.php?id=' . $students[$i]->getId() . '"class="btn btn-primary">Editar</a>'
             );
             echo '<tr>';
@@ -86,7 +85,7 @@ $students = $dao->getAllStudents();
         ?>
         </tbody>
     </table>
-    <a href="add_student.php" class="btn btn-success">Nuevo</a>
+    <a href="add_student.php" class="btn btn-success">Añadir</a>
 </div>
 </body>
 </html>

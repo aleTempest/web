@@ -7,6 +7,11 @@ class Career {
         $this->name = $name;
     }
 
+    public function __toString(): string
+    {
+        return $this->id . ',' . $this->name;
+    }
+
     public function getName() : string {
         return $this->name;
     }

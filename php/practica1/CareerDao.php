@@ -27,7 +27,8 @@ class CareerDao extends DAO implements CareerDaoImpl {
         $sql = "SELECT * FROM careers";
         $res = $this->conn->query($sql);
         while ($row = mysqli_fetch_array($res,MYSQLI_ASSOC)) {
-            $careers[] = new Career($row['id_career'],$row['name']);
+            $career = new Career($row['id_career'],$row['name']);
+            $careers[] = $career;
         }
         return $careers;
     }
@@ -40,7 +41,7 @@ class CareerDao extends DAO implements CareerDaoImpl {
      */
     public function getCareer(int $id)
     {
-        $sql = "SELECT * FROM careers WHERE id = $id";
+        $sql = "SELECT * FROM careers WHERE id_career = $id";
         $row = $this->conn->query($sql)->fetch_assoc();
         return new Career($row['id_career'],$row['name']);
     }
@@ -64,7 +65,7 @@ class CareerDao extends DAO implements CareerDaoImpl {
      */
     public function updateCareer(int $id, string $name)
     {
-        $sql = "UPDATE careers SET name = '$name' WHERE id = $id";
+        $sql = "UPDATE careers SET name = '$name' WHERE id_career = $id";
         $this->conn->query($sql);
     }
 
@@ -75,7 +76,7 @@ class CareerDao extends DAO implements CareerDaoImpl {
      */
     public function deleteCareer(int $id)
     {
-        $sql = "DELETE FROM careers WHERE id = $id";
+        $sql = "DELETE FROM careers WHERE id_career = $id";
         $this->conn->query($sql);
     }
 }

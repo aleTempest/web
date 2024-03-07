@@ -1,8 +1,10 @@
 <?php
 require 'crendentials.php';
 require 'StudentDao.php';
+require 'CareerDao.php';
 
-$dao = new StudentDao($servername,$username,$password,$dbname);
+$student_dao = new StudentDao($servername,$username,$password,$dbname);
+$career_dao = new CareerDao($servername,$username,$password,$dbname);
 
 // alta de alumnos
 if (isset($_POST['alta_alumno'])) {
@@ -72,7 +74,7 @@ if (isset($_POST['cambio_carrera'])) {
 
 if (isset($_GET['delete_student'])) {
     $id = $_GET['delete_student'];
-    $dao->deleteStudent($id);
+    $student_dao->deleteStudent($id);
     header('Location: student_list.php');
 }
 
@@ -82,7 +84,7 @@ if (isset($_POST['add_student'])) {
     $enrollment = $_POST['enrollment'];
     $email = $_POST['email'];
     $age = $_POST['age'];
-    $dao->createStudent($id_career,$enrollment,$name,$email,$age);
+    $student_dao->createStudent($id_career,$enrollment,$name,$email,$age);
     header('Location: student_list.php');
 }
 
@@ -94,6 +96,25 @@ if (isset($_POST['update_student'])) {
     $email = $_POST['email'];
     $age = $_POST['age'];
     // $career_name = $_POST['career_name'];
-    $dao->updateStudent($id,$id_career,$enrollment,$name,$email,$age);
+    $student_dao->updateStudent($id,$id_career,$enrollment,$name,$email,$age);
     header('Location: student_list.php');
+}
+
+if (isset($_GET['delete_career'])) {
+    $id = $_GET['delete_career'];
+    $career_dao->deleteCareer($id);
+    header('Location: career_list.php');
+}
+
+if (isset($_POST['add_career'])) {
+    $name = $_POST['career_name'];
+    $career_dao->createCareer($name);
+    header('Location: career_list.php');
+}
+
+if (isset($_POST['update_career'])) {
+    $id = $_POST['id_career'];
+    $name = $_POST['career_name'];
+    $career_dao->updateCareer($id,$name);
+    header('Location: career_list.php');
 }
