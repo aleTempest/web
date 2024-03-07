@@ -1,5 +1,10 @@
 <?
-include 'db.php';
+require 'db.php';
+require 'crendentials.php';
+require 'StudentDao.php';
+
+$dao = new StudentDao($servername,$username,$password,$dbname);
+
 // alta de alumnos
 if (isset($_POST['alta_alumno'])) {
 	$matricula	= $_POST['matricula'];
@@ -64,4 +69,31 @@ if (isset($_POST['cambio_carrera'])) {
 	$sql = "UPDATE carrera SET nombre = '$nombre' WHERE id_carrera = $id";
 	$res = $conn->query($sql);
 	header("Location: listado_carreras.php");
+}
+
+if (isset($_GET['delete_student'])) {
+    $id = $_GET['delete_student'];
+    $dao->deleteStudent($id);
+    header('Location: student_list.php');
+}
+
+if (isset($_POST['add_student'])) {
+    $id_career = $_POST['id_career'];
+    $name = $_POST['name'];
+    $enrollment = $_POST['enrollment'];
+    $email = $_POST['email'];
+    $age = $_POST['age'];
+    $dao->createStudent($id_career,$enrollment,$name,$email,$age);
+    header('Location: student_list.php');
+}
+
+if (isset($_POST['update_student'])) {
+    $id = $_POST['id'];
+    $id_career = $_POST['id_career'];
+    $name = $_POST['name'];
+    $enrollment = $_POST['enrollment'];
+    $email = $_POST['email'];
+    $age = $_POST['age'];
+    $dao->updateStudent($id,$id_career,$enrollment,$name,$email,$age);
+    header('Location: student_list.php');
 }
