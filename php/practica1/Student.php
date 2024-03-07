@@ -2,18 +2,20 @@
 class Student {
     private int $id;
     private int $id_career;
+    private string $career_name;
     private string $name;
     private string $enrollment;
     private string $email;
     private int $age;
 
-    public function __construct(int $id, int $id_career, string $name, string $enrollment, string $email, int $age) {
+    public function __construct(int $id, int $id_career, string $name, string $enrollment, string $email, int $age, string $career_name) {
         $this->id = $id;
         $this->id_career = $id_career;
         $this->name = $name;
         $this->enrollment = $enrollment;
         $this->email = $email;
         $this->age = $age;
+        $this->career_name = $career_name;
     }
 
     public function toMap(): Array {
@@ -21,7 +23,8 @@ class Student {
             "enrollment" => $this->enrollment,
             "name" => $this->name,
             "email" => $this->email,
-            "age" => $this->age
+            "age" => $this->age,
+            "career" => $this->career_name
         );
     }
 
@@ -54,6 +57,11 @@ class Student {
     public function getIdCareer(): int
     {
         return $this->id_career;
+    }
+
+    public function getCareerName(): string
+    {
+        return $this->career_name;
     }
 }
 

@@ -7,6 +7,7 @@ $table_headers = Array(
     "Nombre",
     "Email",
     "Edad",
+    "Carrera",
     "Cambios"
 );
 

@@ -16,11 +16,11 @@ class StudentDao extends DAO implements StudentDaoImpl {
     public function getAllStudents(): Array
     {
         $students = array();
-        $sql = "SELECT * FROM students";
+        $sql = "SELECT * FROM students_career_view";
         $res = $this->conn->query($sql);
         // Recorrer fila por fila en el resultado de la query
         while ($row = mysqli_fetch_array($res,MYSQLI_ASSOC)) {
-            $student = new Student($row['id'], $row['id_career'],$row['name'],$row['enrollment'],$row['email'],intval($row['age']));
+            $student = new Student($row['id'], $row['id_career'],$row['name'],$row['enrollment'],$row['email'],intval($row['age']),$row['career_name']);
             $students[] = $student;
         }
         return $students;
@@ -34,7 +34,7 @@ class StudentDao extends DAO implements StudentDaoImpl {
      */
     public function getStudent(int $id): Student
     {
-        $sql = "SELECT * FROM students WHERE id = $id";
+        $sql = "SELECT * FROM students_career_view WHERE id = $id";
         $row = $this->conn->query($sql)->fetch_assoc();
         return new Student(
             $row['id'],
@@ -42,7 +42,8 @@ class StudentDao extends DAO implements StudentDaoImpl {
             $row['enrollment'],
             $row['name'],
             $row['email'],
-            $row['age']
+            $row['age'],
+            $row['id_career']
         );
     }
 

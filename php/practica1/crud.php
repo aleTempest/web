@@ -93,6 +93,7 @@ if (isset($_POST['update_student'])) {
     $enrollment = $_POST['enrollment'];
     $email = $_POST['email'];
     $age = $_POST['age'];
+    // $career_name = $_POST['career_name'];
     $dao->updateStudent($id,$id_career,$enrollment,$name,$email,$age);
     header('Location: student_list.php');
 }
