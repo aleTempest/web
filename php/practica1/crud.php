@@ -1,5 +1,4 @@
-<?
-require 'db.php';
+<?php
 require 'crendentials.php';
 require 'StudentDao.php';
 
