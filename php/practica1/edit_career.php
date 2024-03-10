@@ -6,7 +6,6 @@ require 'CareerDao.php';
 $id_career = $_GET['id'];
 $dao = new CareerDao($servername,$username,$password,$dbname);
 $career = $dao->getCareer($id_career);
-echo $career;
 ?>
 <!doctype html>
 <html lang="en">

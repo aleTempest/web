@@ -1,19 +1,20 @@
-<!DOCTYPE html>
+<?php
+require 'factories.php';
+$careers = createCareerdao()->getAllCareers();
+?>
 <html lang="en">
-
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Dashboard</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 			integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+		<title>Añadir Materia</title>
 	</head>
-
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" href="index.html">
 				<img src="img/upvlogo.png" alt="logo" width="60" height="60">
-					Index
+				Index
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -27,41 +28,32 @@
 						<a class="nav-link" href="student_list.php">Alumnos</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link " href="subject_list.php">Materias</a>
+						<a class="nav-link" href="subject_list.php">Materias</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
+
 		<div class="container">
-			<div class="row justify-content-center mt-5">
-				<div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Carreras</h5>
-							<p class="card-text">Panel de control para carreras</p>
-							<a href="career_list.php" class="btn btn-primary">Ir</a>
-						</div>
-					</div>
+			<h2>Nueva Materia</h2>
+			<form action="crud.php" method="post">
+				<div class="form-group">
+					<label for="subject_name">Nombre de la materia:</label>
+					<input type="text" name="subject_name" class="form-control">
 				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-					<div class="card">
-						<div class="card-body ">
-							<h5 class="card-title">Alumnos</h5>
-							<p class="card-text">Panel de control para alumnos</p>
-							<a href="student_list.php" class="btn btn-primary">Ir</a>
-						</div>
-					</div>
+				<div class="form-group">
+					<select name="id_career" class="form-control">
+						<?php
+						foreach($careers as $career)
+						{
+						echo '<option value="' . $career->getId() . '">' . $career->getName() . '</option>';
+						}
+						?>
+					</select>
 				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Materias</h5>
-							<p class="card-text">Panel de control para materias</p>
-							<a href="subject_list.php" class="btn btn-primary">Ir</a>
-						</div>
-					</div>
-				</div>
-			</div>
+				<button class="btn btn-success" type="submit">Guardar</button>
+				<a href="subject_list.php" class="btn btn-primary">Regresar</a>
+			</form>
 		</div>
 	</body>
 </html>

@@ -118,3 +118,11 @@ if (isset($_POST['update_career'])) {
     $career_dao->updateCareer($id,$name);
     header('Location: career_list.php');
 }
+
+if (isset($_POST['ids'])) 
+{
+	foreach($_POST['ids'] as $id) 
+	{
+		echo $id;
+	}
+}

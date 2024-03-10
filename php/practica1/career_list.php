@@ -35,7 +35,7 @@ $table_headers = Array("Nombre","Controles");
                 <a class="nav-link" href="student_list.php">Alumnos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="subject_list.php">Materias</a>
+                <a class="nav-link " href="subject_list.php">Materias</a>
             </li>
         </ul>
     </div>
@@ -45,31 +45,35 @@ $table_headers = Array("Nombre","Controles");
     <table class="table table-hover">
         <thead>
         <tr>
-            <?php
-            foreach ($table_headers as $header) {
-                echo '<th>' . $header . '</th>';
-            }
-            ?>
+	        <?php
+	        foreach ($table_headers as $header)
+	        {
+		        echo '<th>' . $header . '</th>';
+	        }
+	        ?>
         </tr>
         </thead>
         <tbody>
-        <?php
-        for ($i = 0; $i < count($careers); $i++) {
-            if ($i != count($careers) + 1) {
-                $controls = array(
-                    "button_delete" => '<button type="submit" name="delete_career" value="' . $careers[$i]->getId() . '" class="btn btn-danger">Eliminar</button>',
-                    "button_edit" => '<a href="edit_career.php?id=' . $careers[$i]->getId() . '"class="btn btn-primary">Editar</a>'
-                );
-                echo '<tr><td>' . $careers[$i]->getName() . '</td>';
-            }
+		    <?php
+		    for ($i = 0; $i < count($careers); $i++)
+		    {
+			    if ($i != count($careers) + 1)
+			    {
+				    $controls = array(
+						    "button_delete" => '<button type="submit" name="delete_career" value="' . $careers[$i]->getId() . '" class="btn btn-danger">Eliminar</button>',
+						    "button_edit" => '<a href="edit_career.php?id=' . $careers[$i]->getId() . '"class="btn btn-primary">Editar</a>'
+				    );
+				    echo '<tr><td>' . $careers[$i]->getName() . '</td>';
+			    }
 
-            echo '<td><form action="crud.php" method="GET">';
-            foreach ($controls as $control) {
-                echo $control . ' ';
-            }
-            echo '</form></td></tr>';
-        }
-        ?>
+			    echo '<td><form action="crud.php" method="GET">';
+			    foreach ($controls as $control)
+			    {
+				    echo $control . ' ';
+			    }
+			    echo '</form></td></tr>';
+		    }
+		    ?>
         </tbody>
     </table>
     <a href="add_career.php" class="btn btn-success">Añadir</a>
