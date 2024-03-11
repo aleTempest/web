@@ -1,8 +1,8 @@
 <?php
 require 'factories.php';
-$id_career = $_GET['id'];
+$id = $_GET['id'];
 $subject_dao = createSubjectDao();
-$subjects = $subject_dao->getSubjectByCareer($id_career);
+$data = $subject_dao->getStudentSubjects($id);
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,7 +16,6 @@ $subjects = $subject_dao->getSubjectByCareer($id_career);
 	</head>
 
 	<body>
-		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<a class="navbar-brand" href="index.html">
 					<img src="img/upvlogo.png" alt="logo" width="60" height="60">
@@ -39,24 +38,29 @@ $subjects = $subject_dao->getSubjectByCareer($id_career);
 					</ul>
 				</div>
 			</nav>
+		<div class="container">
 			<form action="crud.php" method="post">
-			<table class="table table-holder">
-				<thead>
-					<tr>
-						<th>Nombre</th>
-						<th>Controles</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-					for ($i = 0; $i < count($subjects); $i++) {
-						echo '<tr><td>' . $subjects[$i]->getName() . '</td>';
-						echo '<td><div class="form-check form-switch">' . '<input class="form-check-input" id="flexSwitchCheckDefault" role="switch" type="checkbox" name="ids[]" value="' . $subjects[$i]->getId() . '"/>' . '</div></td></tr>';
-					}
-					?>
-				</tbody>
-			</table>
-			<button class="btn btn-success" type="submit">Guardar</button>
+				<table class="table table-holder">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Calificación</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+						foreach($data as $item)
+						{
+							echo '<tr><td>';
+							echo $item['subject_name'] . '</td>';
+							echo '<td><input type="text" value="' . $item['score'] . '" class="form-control name="subject_score"/></td>';
+							echo '</tr>';
+						}
+						?>
+					</tbody>
+				</table>
+				<button class="btn btn-success" type="submit">Guardar</button>
+				<button class="btn btn-primary">Asignar Materia</button>
 			</form>
 		</div>
 	</body>

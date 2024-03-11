@@ -155,12 +155,17 @@ class SubjectDao extends DAO implements SubjectDaoImpl {
 	public function getStudentSubjects(int $id): Array
 	{
 		$sql = "SELECT * FROM student_subject_score_view WHERE id = $id";
-		$row = $this->conn->query($sql)->fetch_assoc();
-		return Array( // Esto debería ser un objeto pero no me dio tiempo a implementarlo.
-			"id_subject" => $row['id_subject'],
-			"subject_name" => $row['subject_name'],
-			"score_id" => $row['score_id'],
-			"score" => $row['score']
-		);
+		$res = $this->conn->query($sql);
+		$arr_aux = Array();
+		while ($row = mysqli_fetch_array($res,MYSQLI_ASSOC))
+		{
+			$arr_aux[] = Array( // Esto debería ser un objeto pero no me dio tiempo a implementarlo.
+				"id_subject" => $row['id_subject'],
+				"subject_name" => $row['subject_name'],
+				"score_id" => $row['score_id'],
+				"score" => $row['score']
+			);
+		}
+		return $arr_aux;
 	}
 }

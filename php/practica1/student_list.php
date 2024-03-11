@@ -64,7 +64,7 @@ $students = $dao->getAllStudents();
             $controls = array(
                 "button_delete" => '<button type="submit" name="delete_student" value="' . $students[$i]->getId() . '" class="btn btn-danger">Eliminar</button>',
                 "button_edit" => '<a href="edit_student.php?id=' . $students[$i]->getId() . '"class="btn btn-primary">Editar</a>',
-                "button_careers" => '<a href="student_subjects_list.php?id=' . $students[$i]->getIdCareer() . '"class="btn btn-primary">Materias</a>',
+                "button_careers" => '<a href="student_subjects_list.php?id=' . $students[$i]->getId() . '"class="btn btn-info">Materias</a>',
             );
             echo '<tr>';
             $attributes = array_values($students[$i]->toMap());
