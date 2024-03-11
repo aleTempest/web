@@ -45,15 +45,18 @@ $subjects = $dao->getAllSubjects();
 					</tr>
 				</thead>
 				<tbody>
+					<form action="crud.php" method="get">
 					<?php
 					for ($i = 0; $i < count($subjects); $i++ ) {
-					echo '<tr><td>' . $subjects[$i]->getName() . '</td>';
-						echo '<td><a href="subject_careers.php?id=' . $subjects[$i]->getId() . '" class="btn btn-info">Ver carreras</a></td></tr>';
+						echo '<tr><td>' . $subjects[$i]->getName() . '</td>';
+						echo '<td><a href="subject_careers.php?id=' . $subjects[$i]->getId() . '" class="btn btn-info">Ver carreras</a> ';
+						echo '<button  type="submit" name="delete_subject" class="btn btn-danger" value="' . $subjects[$i]->getId() . '">Eliminar</button></td>' . '</tr>';
 					}
 					?>
 				</tbody>
 			</table>
 			<a href="add_subject.php" class="btn btn-success">Nueva materia</a>
+			</form>
 		</div>
 	</body>
 </html>

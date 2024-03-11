@@ -91,9 +91,3 @@ class StudentDao extends DAO implements StudentDaoImpl {
 		$this->conn->query($sql);
 	}
 }
-
-/*$dao = new StudentDAO("db","ale","elaina","unidad2");
-$students = $dao->getAllStudents();
-foreach ($students as $student) {
-		echo nl2br($student . "\n");
-}*/

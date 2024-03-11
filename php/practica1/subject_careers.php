@@ -45,19 +45,18 @@ $careers = createSubjectDao()->getCareersBySubject($id);
 					</tr>
 				</thead>
 				<tbody>
-					<form action="" method="post">
+					<form action="crud.php" method="post">
 						<?php
 						for ($i = 0; $i < count($careers); $i++) 
 						{
 							echo '<tr><td>' . $careers[$i]->getName() . '</td>';
-							echo '<td><button type="button" class="btn btn-danger">Eliminar</button></td></tr>';
+							echo '<td><button type="submit" class="btn btn-danger" name="delete_career_subject" value="' . $careers[$i]->getId() . '">Eliminar</button></td></tr>';
 						}
-						?>
+						?></form>
 				</tbody>
 			</table>
 			<button class="btn btn-success">Añadir carrera</button>
 			<a href="subject_list.php" class="btn btn-primary">Regresar</a>
-					</form>
 		</div>
 	</body>
 </html>

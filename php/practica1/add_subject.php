@@ -7,7 +7,7 @@ $careers = createCareerdao()->getAllCareers();
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-			integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+													 integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 		<title>Añadir Materia</title>
 	</head>
 	<body>
@@ -41,16 +41,17 @@ $careers = createCareerdao()->getAllCareers();
 					<label for="subject_name">Nombre de la materia:</label>
 					<input type="text" name="subject_name" class="form-control">
 				</div>
-				<div class="form-group">
-					<select name="id_career" class="form-control">
+				<table class="table table-hover">
+					<tbody>
 						<?php
-						foreach($careers as $career)
+						foreach ($careers as $career) 
 						{
-						echo '<option value="' . $career->getId() . '">' . $career->getName() . '</option>';
+						echo '<tr><td>' . $career->getName() . '</td>';
+							echo '<td><input name="ids[]" type="checkbox" value="' . $career->getId() . '" /></td></tr>';
 						}
 						?>
-					</select>
-				</div>
+					</tbody>
+				</table>
 				<button class="btn btn-success" type="submit">Guardar</button>
 				<a href="subject_list.php" class="btn btn-primary">Regresar</a>
 			</form>
