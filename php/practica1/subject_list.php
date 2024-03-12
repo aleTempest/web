@@ -55,8 +55,11 @@ $subjects = $dao->getAllSubjects();
 					?>
 				</tbody>
 			</table>
+</form>
+<form action="export.php" method="post">
+	<button  type="submit" name="export_subjects" class="btn btn-success">Exportar</button>
 			<a href="add_subject.php" class="btn btn-success">Nueva materia</a>
-			</form>
+</form>
 		</div>
 	</body>
 </html>

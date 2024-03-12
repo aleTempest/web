@@ -2,34 +2,53 @@
 require 'factories.php';
 
 $student_dao = createStudentDao();
+$career_dao = createCareerdao();
+$subject_dao = createSubjectDao();
 
 if (isset($_POST['export_students'])) 
 {
 	$students = $student_dao->getAllStudents();
-
-	// Specify the file name
 	$file_name = 'exported_students.csv';
-
-	// Set the HTTP headers to force download
 	header('Content-Type: text/csv');
 	header('Content-Disposition: attachment; filename="' . $file_name . '"');
-
-	// Open the output stream
 	$output = fopen('php://output', 'w');
-
-	// Write the header to the output stream
 	fputcsv($output, array('Matricula', 'Nombre', 'Email', 'Edad', 'Carrera'));
-
-	// Loop through each student and write their details to the output stream
 	foreach ($students as $student) {
 		fputcsv($output, array_values($student->toMap()));
 	}
-
-	// Close the output stream
 	fclose($output);
-
-	// Stop script execution
 	exit();
-
 }
 
+if (isset($_POST['export_subjects'])) {
+    // Get subjects from your data source, assuming $subject_dao is already defined
+    $subjects = $subject_dao->getAllSubjects();
+
+    // Set headers to indicate CSV content
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="subjects.csv"');
+
+    // Open the output stream
+    $output = fopen('php://output', 'w');
+
+    // Write header row
+    fputcsv($output, ['Subject', 'Careers']);
+
+    // Write data rows
+    foreach ($subjects as $subject) {
+        // Get subject name
+        $subjectName = $subject->getName();
+
+        // Get careers related to the subject
+        $careers = $subject_dao->getCareersBySubject($subject->getId());
+
+        // Write subject name and related careers to CSV row
+        fputcsv($output, [$subjectName, implode(', ', $careers)]);
+    }
+
+    // Close the output stream
+    fclose($output);
+
+    // Exit script to prevent further output
+    exit;
+}

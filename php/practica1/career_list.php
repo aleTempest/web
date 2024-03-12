@@ -76,7 +76,10 @@ $table_headers = Array("Nombre","Controles");
 		    ?>
         </tbody>
     </table>
+<form action="export.php" method="post">
+		<button name="export_subjects" type="submit" class="btn btn-success">Exportar</button>
     <a href="add_career.php" class="btn btn-success">Añadir</a>
+</form>
 </div>
 </html>
 
