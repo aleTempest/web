@@ -86,7 +86,10 @@ $students = $dao->getAllStudents();
         ?>
         </tbody>
     </table>
-    <a href="add_student.php" class="btn btn-success">Añadir</a>
+		<form action="export.php" method="post">
+		  <button name="export_students" type="submit" class="btn btn-success">Exportar</button>
+			<a href="add_student.php" class="btn btn-primary">Añadir</a>
+    </form>
 </div>
 </body>
 </html>
