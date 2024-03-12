@@ -15,7 +15,6 @@ if (isset($_GET['delete_vehicle']))
 if (isset($_POST['update_vehicle']))
 {
 	$id = $_POST['id_vehicle'];
-	$serial_number = $_POST['serial_number'];
 	$brand = $_POST['brand'];
 	$v_type = $_POST['v_type'];
 	$model = $_POST['model'];
@@ -23,6 +22,6 @@ if (isset($_POST['update_vehicle']))
 	$capacity = $_POST['capacity'];
 	$year = $_POST['year'];
 	$origin = $_POST['origin'];
-	$vehicle_dao->updateVehicleById($id,$serial_number,$brand,$v_type,$model,$color,$capacity,$year,$origin);
+	$vehicle_dao->updateVehicleById($id,$brand,$v_type,$model,$color,$capacity,$year,$origin);
 	header('Location: vehicle_list.php');
 }

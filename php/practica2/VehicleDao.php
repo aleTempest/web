@@ -40,7 +40,6 @@ class VehicleDao extends DAO
 		$row = $this->conn->query($sql)->fetch_assoc();
 		$id = $row['id'];
 		$serial_number = $row['serial_number'];
-		echo $serial_number;
 		$brand = $row['brand'];
 		$v_type = $row['type'];
 		$model = $row['model'];
@@ -61,7 +60,8 @@ class VehicleDao extends DAO
 
 	public function updateVehicleById(int $id, string $brand, string $v_type, string $model, string $color, int $capacity, string $year, string $origin) : void
 	{
-		$sql = "UPDATE vehicles SET v_type = 'brand = '$brand', $v_type', model = '$model', color = '$color', capacity = $capacity, year = STR_TO_DATE('$year', '%m-%d-%Y'), origin = '$origin' WHERE id = $id";
+		// $sql = "UPDATE vehicles SET v_type = 'brand = '$brand', '$v_type', model = '$model', color = '$color', capacity = $capacity, year = STR_TO_DATE('$year', '%Y-%m-%d'), origin = '$origin' WHERE id = $id";
+    $sql = "UPDATE vehicles SET brand = '$brand', type = '$v_type', model = '$model', color = '$color', capacity = $capacity, year = STR_TO_DATE('$year', '%Y-%m-%d'), origin = '$origin' WHERE id = $id";
 		$this->conn->query($sql);
 	}
 }
