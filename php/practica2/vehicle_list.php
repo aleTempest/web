@@ -72,9 +72,7 @@ $items = $vehicle_dao->getAllVehicles();
 					?>
 				</tbody>
 			</table>
-			<form action="crud.php">
-				<button class="btn btn-success">Agregar Auto</button>
-			</form>
+			<a href="create_vehicle.php" class="btn btn-success">Agregar Auto</a>
 		</div>
 	</body>
 </html>

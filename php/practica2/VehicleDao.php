@@ -64,4 +64,10 @@ class VehicleDao extends DAO
     $sql = "UPDATE vehicles SET brand = '$brand', type = '$v_type', model = '$model', color = '$color', capacity = $capacity, year = STR_TO_DATE('$year', '%Y-%m-%d'), origin = '$origin' WHERE id = $id";
 		$this->conn->query($sql);
 	}
+
+	public function createVehicle(string $brand, string $v_type, string $model, string $color, int $capacity, string $year, string $origin) : void
+	{
+		$sql = "INSERT INTO vehicles VALUES (DEFAULT,UUID(),'$brand','$v_type','$model','$color',$capacity,STR_TO_DATE('$year','%Y-%m-%d'),'$origin')";
+		$this->conn->query($sql);
+	}
 }
