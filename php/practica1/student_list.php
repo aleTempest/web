@@ -1,7 +1,8 @@
 <?php
 require 'StudentDao.php';
 require 'crendentials.php';
-// Arrays paralelos
+// Encabezados de la tabla, agregar aquí los encabezados para poder generarlos
+// de manera automatica
 $table_headers = Array(
     "Matricula",
     "Nombre",
@@ -12,7 +13,7 @@ $table_headers = Array(
 );
 
 $dao = new StudentDao($servername,$username,$password,$dbname);
-$students = $dao->getAllStudents();
+$students = $dao->getAllStudents(); // arreglo de estudiantes sacado de base de datos
 ?>
 <!doctype html>
 <head>
@@ -61,6 +62,7 @@ $students = $dao->getAllStudents();
         <tbody>
         <?php
         for ($i = 0; $i < count($students); $i++) {
+						// Controles de la tabla, este arreglo contiene todos los elementos interactivos que se desean tener en cada fila de la tabla
             $controls = array(
                 "button_delete" => '<button type="submit" name="delete_student" value="' . $students[$i]->getId() . '" class="btn btn-danger">Eliminar</button>',
                 "button_edit" => '<a href="edit_student.php?id=' . $students[$i]->getId() . '"class="btn btn-primary">Editar</a>',
@@ -68,14 +70,15 @@ $students = $dao->getAllStudents();
 								// "button_scores" => '<button type="submit" name="export_student_scores" class="btn btn-success" value="' . $students[$i]->getId() . '">Exportar</button>'
             );
             echo '<tr>';
-            $attributes = array_values($students[$i]->toMap());
+						// Generar contenido de cada fila con los datos de cada estudiante
+            $attributes = array_values($students[$i]->toMap()); // Propiedades de un estudiante
             for ($j = 0; $j < count($attributes) + 1; $j++) {
                 if ($j != count($attributes)) {
                     echo '<td>' . $attributes[$j] . '</td>';
                 } else {
                     echo '<form action="crud.php" method="GET">';
                     echo '<td>';
-                    foreach ($controls as $control) {
+                    foreach ($controls as $control) { // Generar los controles de la tabla
                         echo $control . ' ';
                     }
                     echo '<td>';
