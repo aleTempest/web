@@ -3,6 +3,7 @@ require 'factory.php';
 
 $vehicle_dao = createVehicleDao();
 $cat_dao = createCatalogDao();
+$views_dao = createViewsDao();
 
 // Eliminar vechículo
 if (isset($_GET['delete_vehicle']))
@@ -64,4 +65,20 @@ if (isset($_POST['update_item']))
 	$cost = $_POST['cost'];
 	$cat_dao->updateItem($id,$desc,$cost);
 	header('Location: item_list.php');
+}
+
+if (isset($_POST['create_service']))
+{
+	$id = $_POST['id'];
+	$desc = $_POST['desc'];
+	$date = $_POST['s_date'];
+	$views_dao->createService($desc,$id,$date);
+	header('Location: vehicle_list.php');
+}
+
+if (isset($_GET['delete_service']))
+{
+	$id = $_GET['delete_service'];
+	$views_dao->deleteService($id);
+	header('Location: vehicle_list.php');
 }

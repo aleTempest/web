@@ -24,6 +24,26 @@ $items = $vehicle_dao->getAllVehicles();
 		<title>Lista de vehículos</title>
 	</head>
 	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="index.html">
+				<img src="img/upvlogo.png" alt="logo" width="60" height="60">
+					Index
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="vehicle_list.php">Vehículos <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="item_list.php">Catálogo</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
 		<div class="container">
 			<h2>Lista de vehículos</h2>
 			<table class="table table-hover">
@@ -37,12 +57,6 @@ $items = $vehicle_dao->getAllVehicles();
 				</thead>
 				<tbody>
 					<?php
-					$controls = Array(
-						'<a class="btn btn-danger">Eliminar</a>',
-						'<button class="btn btn-Info">Modificar</button>',
-					);
-					// Por cada auto en la base de datos, imprimir sus atributos dentro de la tabla
-					// en forma de fila.
 					for($i = 0; $i < count($items); $i++)
 					{
 					  echo '<tr>';
@@ -50,7 +64,8 @@ $items = $vehicle_dao->getAllVehicles();
 						{
 							$controls = array(
 						    "button_delete" => '<button type="submit" name="delete_vehicle" value="' . $items[$i]->getId() . '" class="btn btn-danger">Eliminar</button>',
-						    "button_edit" => '<a href="update_vehicle.php?id=' . $items[$i]->getId() . '"class="btn btn-primary">Editar</a>'
+						    "button_edit" => '<a href="update_vehicle.php?id=' . $items[$i]->getId() . '"class="btn btn-primary">Editar</a>',
+								"button_view" => '<a href="vehicle_view_list.php?id=' . $items[$i]->getId() . '" class="btn btn-info">Servicios</a>'
 							);
 							echo '<td>' . $items[$i]->getBrand() . '</td>';
 							echo '<td>' . $items[$i]->getSubBrand() . '</td>';
