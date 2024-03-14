@@ -23,27 +23,31 @@ $item = $vehicle_dao->getVehicleById($id);
 					<input type="text" class="form-control" name="brand" value="<?php echo $item->getBrand() ?>">
 				</div>
 				<div class="form-group">
+					<label for="sub_brand">Sub Marca</label>
+					<input type="text" class="form-control" name="sub_brand" value="<?php echo $item->getSubBrand() ?>">
+				</div>
+				<div class="form-group">
 					<label for="v_type">Tipo</label>
 					<input type="text" class="form-control" name="v_type" value="<?php echo $item->getVType() ?>">
 				</div>
 				<div class="form-group">
-					<label for="v_type">Tipo</label>
+					<label for="v_type">Modelo</label>
 					<input type="text" class="form-control" name="model" value="<?php echo $item->getModel() ?>">
 				</div>
 				<div class="form-group">
-					<label for="v_type">Tipo</label>
+					<label for="v_type">Color</label>
 					<input type="text" class="form-control" name="color" value="<?php echo $item->getColor() ?>">
 				</div>
 				<div class="form-group">
-					<label for="v_type">Tipo</label>
+					<label for="v_type">Capacidad</label>
 					<input type="text" class="form-control" name="capacity" value="<?php echo $item->getCapacity() ?>">
 				</div>
 				<div class="form-group">
-					<label for="v_type">Tipo</label>
-					<input type="text" class="form-control" name="year" value="<?php echo $item->getYear() ?>">
+					<label for="v_type">Año</label>
+					<input type="date" class="form-control" name="year" value="<?php echo $item->getYear() ?>">
 				</div>
 				<div class="form-group">
-					<label for="v_type">Tipo</label>
+					<label for="v_type">Origen</label>
 					<input type="text" class="form-control" name="origin" value="<?php echo $item->getOrigin() ?>">
 				</div>
 				<button name="update_vehicle" class="btn btn-success">Guardar</button>

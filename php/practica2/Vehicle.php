@@ -4,6 +4,7 @@ class Vehicle
 	private int $id;
 	private string $serial_number;
 	private string $brand;
+	private string $subBrand;
 	private string $v_type;
 	private string $model;
 	private string $color;
@@ -11,11 +12,26 @@ class Vehicle
 	private string $year;
 	private string $origin;
 
-	public function __construct(int $id,string $serial_number, string $brand, string $v_type, string $model, string $color, int $capacity, string $year, string $origin) 
+	/**
+	 * Constructor de la clase Vehicle.
+	 *
+	 * @param int $id Identificador único del vehículo.
+	 * @param string $serial_number Número de serie del vehículo.
+	 * @param string $brand Marca del vehículo.
+	 * @param string $subBrand Sub Marca del vehículo.
+	 * @param string $v_type Tipo de vehículo.
+	 * @param string $model Modelo del vehículo.
+	 * @param string $color Color del vehículo.
+	 * @param int $capacity Capacidad del vehículo.
+	 * @param string $year Año de fabricación del vehículo.
+	 * @param string $origin Origen del vehículo.
+	 */
+	public function __construct(int $id,string $serial_number, string $brand, string $subBrand, string $v_type, string $model, string $color, int $capacity, string $year, string $origin) 
 	{
 		$this->id = $id;
 		$this->serial_number = $serial_number;
 		$this->brand = $brand;
+		$this->subBrand = $subBrand;
 		$this->v_type = $v_type;
 		$this->model = $model;
 		$this->color = $color;
@@ -67,5 +83,10 @@ class Vehicle
 	public function getId(): int
 	{
 		return $this->id;
+	}
+
+	public function getSubBrand(): string
+	{
+		return $this->subBrand;
 	}
 }

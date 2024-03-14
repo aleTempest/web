@@ -52,8 +52,8 @@ $items = $vehicle_dao->getAllVehicles();
 						    "button_delete" => '<button type="submit" name="delete_vehicle" value="' . $items[$i]->getId() . '" class="btn btn-danger">Eliminar</button>',
 						    "button_edit" => '<a href="update_vehicle.php?id=' . $items[$i]->getId() . '"class="btn btn-primary">Editar</a>'
 							);
-							echo '<td>' . $items[$i]->getSerialNumber() . '</td>';
 							echo '<td>' . $items[$i]->getBrand() . '</td>';
+							echo '<td>' . $items[$i]->getSubBrand() . '</td>';
 							echo '<td>' . $items[$i]->getVType() . '</td>';
 							echo '<td>' . $items[$i]->getModel() . '</td>';
 							echo '<td>' . $items[$i]->getColor() . '</td>';

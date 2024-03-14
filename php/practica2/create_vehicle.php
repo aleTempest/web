@@ -18,6 +18,10 @@
 					<input type="text" class="form-control" name="brand" >
 				</div>
 				<div class="form-group">
+					<label for="sub_brand">Sub Marca</label>
+					<input type="text" class="form-control" name="sub_brand" >
+				</div>
+				<div class="form-group">
 					<label for="v_type">Tipo</label>
 					<input type="text" class="form-control" name="v_type" >
 				</div>
@@ -35,7 +39,7 @@
 				</div>
 				<div class="form-group">
 					<label for="year">Año</label>
-					<input type="text" class="form-control" name="year" >
+					<input type="date" class="form-control" name="year" >
 				</div>
 				<div class="form-group">
 					<label for="origin">Procedencia</label>
