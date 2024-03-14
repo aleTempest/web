@@ -60,7 +60,7 @@ $headers = Array(
 						{
 						$controls = array(
 						"button_delete" => '<button type="submit" name="delete_service" value="' . $items[$i]->getId() . '" class="btn btn-danger">Eliminar</button>',
-						"button_edit" => '<a href="edit_service.php?id=' . $items[$i]->getId() . '"class="btn btn-primary">Editar</a>',
+						"button_edit" => '<a href="update_service.php?id=' . $items[$i]->getId() . '"class="btn btn-primary">Editar</a>',
 						);
 
 						echo '<tr>';
