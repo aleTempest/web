@@ -1,6 +1,7 @@
 <?php
 require_once 'credentials.php';
 
+// realizar la query a la base de datos
 $res = $conn->query("SELECT * FROM catalog");
 $headers = Array(
     "Desc",
@@ -50,6 +51,7 @@ $headers = Array(
         </thead>
         <tbody>
         <?php
+        // Iterar en los valores de cada fila
         while($row = $res->fetch_assoc())
         {
             echo '<tr>';
@@ -57,6 +59,7 @@ $headers = Array(
                 "button_delete" => '<button type="submit" name="delete_item" value="' . $row['id'] . '" class="btn btn-danger">Eliminar</button>',
                 "button_edit" => '<a href="update_item.php?id=' . $row['id'] . '"class="btn btn-primary">Editar</a>'
             );
+            // Imprimir los valores
             echo '<td>' . $row['cat_desc'] . '</td>';
             echo '<td>' . $row['cost'] . '</td>';
             echo '<td><form action="crud.php" method="GET">';

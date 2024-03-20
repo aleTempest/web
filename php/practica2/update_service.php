@@ -1,10 +1,12 @@
 <?php
 require_once 'credentials.php';
-$id = $_GET['id'];
+$id = $_GET['id']; // id del auto
+ // Consultar los servicios de un auto
 $sql = "SELECT * FROM services WHERE id = $id";
+// Consultar todos los servicios disponibles en el catalogo
 $sql2 = "SELECT * FROM catalog";
-$res = $conn->query($sql2);
-$actual_row = $conn->query($sql)->fetch_assoc();
+$res = $conn->query($sql2); // resultado de la query del catalogo
+$actual_row = $conn->query($sql)->fetch_assoc(); // resultado de la consulta de los servicios
 ?>
 
 <!doctype html>

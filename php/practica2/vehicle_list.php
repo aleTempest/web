@@ -12,7 +12,7 @@ $headers = Array(
 	"Controles",
 );
 
-// Crear conexión a la base de datos
+//
 $sql = "SELECT * FROM vehicles";
 $res = $conn->query($sql);
 

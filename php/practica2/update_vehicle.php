@@ -1,7 +1,7 @@
 <?php
 require 'credentials.php';
 
-$id = $_GET['id'];
+$id = $_GET['id']; // id del vehículo
 $sql = "SELECT * FROM vehicles WHERE id = $id";
 $row = $conn->query($sql)->fetch_assoc();
 ?>

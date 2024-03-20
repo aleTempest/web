@@ -1,7 +1,8 @@
 <?php
 require_once 'credentials.php';
 
-$id = $_GET['id'];
+$id = $_GET['id']; // id obtenido de la otra pantalla
+// realizar la query a la base de datos
 $sql = "SELECT * FROM catalog";
 $res = $conn->query($sql);
 ?>
@@ -22,6 +23,7 @@ $res = $conn->query($sql);
 					<label for="desc">Descripción</label>
 					<select name="id_catalog" class="form-control">
 						<?php
+                        // iterar entre los resultados de la query
                         while ($row = $res->fetch_assoc())
                         {
                             echo '<option value="' . $row['id'] . '" >' . $row['cat_desc'] . '</option>';

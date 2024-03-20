@@ -1,7 +1,7 @@
 <?php
 require_once 'credentials.php';
 
-$id = $_GET['id'];
+$id = $_GET['id']; // id obtenido de la anterior pantalla
 $sql = "SELECT * FROM catalog WHERE id = $id";
 $row = $conn->query($sql)->fetch_assoc();
 ?>

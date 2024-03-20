@@ -1,9 +1,9 @@
 <?php
 require_once 'credentials.php';
 
-$id = $_GET['id'];
-$sql = "SELECT * FROM vehicle_view WHERE id = $id";
-$sql2 = "SELECT SUM(cost) as total FROM vehicle_view WHERE id = $id";
+$id = $_GET['id']; // id del auto
+$sql = "SELECT * FROM vehicle_view WHERE id = $id"; // datos de servicios por auto
+$sql2 = "SELECT SUM(cost) as total FROM vehicle_view WHERE id = $id"; // total de servicios
 
 $res = $conn->query($sql);
 $row_total = $conn->query($sql2)->fetch_assoc();
@@ -56,6 +56,7 @@ $headers = Array(
         </thead>
         <tbody>
         <?php
+        // Obtener los valores de cada fila en la consulta de servicios
         while($row = $res->fetch_assoc())
         {
             echo '<tr>';
@@ -65,6 +66,7 @@ $headers = Array(
             );
 
             echo '<tr>';
+            // Imprimir los valores
             echo '<td>' . $row['cat_desc'] . '</td>';
             echo '<td>' . $row['service_date'] . '</td>';
             echo '<td>' . $row['cost'] . '</td>';

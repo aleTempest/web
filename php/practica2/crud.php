@@ -23,16 +23,7 @@ if (isset($_POST['update_vehicle']))
     $capacity = $_POST['capacity'];
     $year = $_POST['year'];
     $origin = $_POST['origin'];
-    $sql = "UPDATE vehicles
-			SET brand = '$brand', 
-			sub_brand = '$sub_brand', 
-			type = '$v_type', 
-			model = '$model', 
-			color = '$color', 
-			capacity = '$capacity', 
-			year = STR_TO_DATE('$year', '%Y-%m-%d'), 
-			origin = '$origin'
-			WHERE id = $id";
+    $sql = "UPDATE vehicles SET brand = '$brand', sub_brand = '$sub_brand', type = '$v_type', model = '$model', color = '$color', capacity = '$capacity', year = STR_TO_DATE('$year', '%Y-%m-%d'), origin = '$origin' WHERE id = $id";
     $conn->query($sql);
     header('Location: vehicle_list.php');
 }
@@ -54,6 +45,7 @@ if (isset($_POST['create_vehicle']))
     header('Location: vehicle_list.php');
 }
 
+// Crear un nuevo servicio en el catálogo
 if (isset($_POST['create_item']))
 {
     $desc = $_POST['desc'];
@@ -63,6 +55,7 @@ if (isset($_POST['create_item']))
     header('Location: item_list.php');
 }
 
+// Eliminar un servicio del catálogo
 if (isset($_GET['delete_item']))
 {
     $id = $_GET['delete_item'];
@@ -71,6 +64,7 @@ if (isset($_GET['delete_item']))
     header('Location: item_list.php');
 }
 
+// actializar un servicio del catálogo
 if (isset($_POST['update_item']))
 {
     $id = $_POST['id'];
@@ -81,6 +75,7 @@ if (isset($_POST['update_item']))
     header('Location: item_list.php');
 }
 
+// Crear un nuevo servicio para un vehículo
 if (isset($_POST['create_service']))
 {
     $id = $_POST['id']; // id del vehículo
@@ -91,6 +86,7 @@ if (isset($_POST['create_service']))
     header('Location: vehicle_view_list.php?id=' . $id);
 }
 
+// Eliminar un servicio de un vehículo
 if (isset($_GET['delete_service']))
 {
     $id = $_GET['delete_service'];
@@ -100,6 +96,7 @@ if (isset($_GET['delete_service']))
     header('Location: vehicle_view_list.php?id=' . $v_id);
 }
 
+// Actualizar un servicio de un vehículo
 if (isset($_POST['update_service'])) {
     $v_id = $_POST['v_id'];
     $s_id = $_POST['s_id'];
