@@ -1,3 +1,9 @@
+<?php
+require 'factory.php';
+
+$cat_dao = createCatalogDao();
+?>
+
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">

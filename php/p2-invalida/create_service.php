@@ -1,9 +1,9 @@
 <?php
-require_once 'credentials.php';
+require_once 'factory.php';
 
 $id = $_GET['id'];
-$sql = "SELECT * FROM catalog";
-$res = $conn->query($sql);
+$cat_dao = createCatalogDao();
+$desc_items = $cat_dao->getAllItems();
 ?>
 <html lang="en">
 	<head>
@@ -20,12 +20,12 @@ $res = $conn->query($sql);
 				<input name="id" type="hidden" value="<?php echo $id ?>">
 				<div class="form-group">
 					<label for="desc">Descripción</label>
-					<select name="id_catalog" class="form-control">
+					<select name="desc" class="form-control">
 						<?php
-                        while ($row = $res->fetch_assoc())
-                        {
-                            echo '<option value="' . $row['id'] . '" >' . $row['cat_desc'] . '</option>';
-                        }
+						foreach($desc_items as $item)
+						{
+						  echo '<option value="' . $item->getId() . '" >' . $item->getDesc() . '</option>';
+						}
 						?>
 					</select>
 				</div>

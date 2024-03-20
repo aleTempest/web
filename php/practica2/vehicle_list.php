@@ -1,5 +1,5 @@
 <?php
-require 'factory.php';
+require_once 'credentials.php';
 $headers = Array(
 	"Marca",
 	"Sub-marca",
@@ -12,8 +12,10 @@ $headers = Array(
 	"Controles",
 );
 
-$vehicle_dao = createVehicleDao();
-$items = $vehicle_dao->getAllVehicles();
+// Crear conexión a la base de datos
+$sql = "SELECT * FROM vehicles";
+$res = $conn->query($sql);
+
 ?>
 <html lang="en">
 	<head>
@@ -57,37 +59,28 @@ $items = $vehicle_dao->getAllVehicles();
 				</thead>
 				<tbody>
 					<?php
-					for($i = 0; $i < count($items); $i++)
-					{
-					  echo '<tr>';
-						if ($i != count($items) + 1)
-						{
-							$controls = array(
-						    "button_delete" => '<button type="submit" name="delete_vehicle" value="' . $items[$i]->getId() . '" class="btn btn-danger">Eliminar</button>',
-						    "button_edit" => '<a href="update_vehicle.php?id=' . $items[$i]->getId() . '"class="btn btn-primary">Editar</a>',
-								"button_view" => '<a href="vehicle_view_list.php?id=' . $items[$i]->getId() . '" class="btn btn-info">Servicios</a>'
-							);
-							echo '<td>' . $items[$i]->getBrand() . '</td>';
-							echo '<td>' . $items[$i]->getSubBrand() . '</td>';
-							echo '<td>' . $items[$i]->getVType() . '</td>';
-							echo '<td>' . $items[$i]->getModel() . '</td>';
-							echo '<td>' . $items[$i]->getColor() . '</td>';
-							echo '<td>' . $items[$i]->getCapacity() . '</td>';
-							echo '<td>' . $items[$i]->getYear() . '</td>';
-							echo '<td>' . $items[$i]->getOrigin() . '</td>';
-						}
-
-			    echo '<td><form action="crud.php" method="GET">';
-			    foreach ($controls as $control)
-			    {
-				    echo $control . ' ';
-			    }
-			    echo '</form></td></tr>'; // termina la fila
-					}
-					?>
-				</tbody>
-			</table>
-			<a href="create_vehicle.php" class="btn btn-success">Agregar Auto</a>
-		</div>
-	</body>
+                    // Iterar sobre los resultados de la query y mostrarlos en la tabla
+                    while ($row = $res->fetch_assoc()) {
+                        echo '<tr>';
+                        echo '<td>' . $row['brand'] . '</td>';
+                        echo '<td>' . $row['sub_brand'] . '</td>';
+                        echo '<td>' . $row['type'] . '</td>';
+                        echo '<td>' . $row['model'] . '</td>';
+                        echo '<td>' . $row['color'] . '</td>';
+                        echo '<td>' . $row['capacity'] . '</td>';
+                        echo '<td>' . $row['year'] . '</td>';
+                        echo '<td>' . $row['origin'] . '</td>';
+                        // El formualrio se inicia aquí para que cada campo de cada fila tenga acceso al crud
+                        echo '<td><form action="crud.php" method="GET">';
+                        echo '<button type="submit" name="delete_vehicle" value="' . $row['id'] . '" class="btn btn-danger">Eliminar</button> ';
+                        echo '<a href="update_vehicle.php?id=' . $row['id'] . '"class="btn btn-primary">Editar</a> ';
+                        echo '<a href="vehicle_view_list.php?id=' . $row['id'] . '" class="btn btn-info">Servicios</a> ';
+                        echo '</form></td></tr>';
+                    }
+                    ?>
+                </tbody>
+            </table>
+            <a href="create_vehicle.php" class="btn btn-success">Agregar Auto</a>
+        </div>
+    </body>
 </html>
