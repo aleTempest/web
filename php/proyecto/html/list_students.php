@@ -1,9 +1,10 @@
 <?php
 require_once 'credentials.php';
 $headers = Array(
-    "Nombre del estudiante",
-    "Correo del estudiante",
-    "Nombre del tutor"
+    "Nombre",
+    "Correo",
+    "Tutor",
+    "Carrera"
 );
 $sql = "SELECT * FROM students_tutors_view";
 $res = $conn->query($sql);
@@ -71,21 +72,24 @@ $res = $conn->query($sql);
                                 echo '<th>' . $header . '</th>';
                             }
                             ?>
-                            <td><a href="add_career_form.php" class="btn btn-success "><i class="fa-solid fa-plus"></i></a></td>
+                            <td><a href="add_student_form.php" class="btn btn-success "><i class="fa-solid fa-plus"></i></a></td>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
                         // iterar en los resultados de la consulta y imprimirlos en la tabla
+
                         while ($row = $res->fetch_assoc())
                         {
                             echo '<tr>';
                             echo '<td>' . $row['student_name'] . '</td>';
                             echo '<td>' . $row['student_email'] . '</td>';
                             echo '<td>' . $row['tutor_name'] . '</td>';
+                            echo '<td>' . $row['career_name'] . '</td>';
                             echo '<td><form method="get" action="crud.php">';
                             echo '<button name="delete_student" class="btn btn-danger" value="' . $row['id_student'] . '"> <i class="fa-solid fa-trash"></i> </button> ';
-                            echo '<a class="btn btn-primary" href="update_student_form.php?id=' . $row['id_student'] . '"> <i class="fa-solid fa-pencil"></i> </a>';
+                            // Se pasan 2 valores id_student y id_career requeridos para editar un estudiante
+                            echo '<a class="btn btn-primary" href="update_student_form.php?id_student=' . $row['id_student'] . '&id_career=' . $row['id_career'] . '"> <i class="fa-solid fa-pencil"></i> </a>';
                             echo '</form></td></tr>';
                         }
                         ?>

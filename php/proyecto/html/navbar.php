@@ -33,6 +33,14 @@
             </a>
         </li>
         <li class="sidebar-item">
+            <a class="sidebar-link" href="list_tutors.php" aria-expanded="false">
+				<span>
+					<i class="ti ti-article"></i>
+				</span>
+                <span class="hide-menu">Tutores</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
             <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
 				<span>
 					<i class="ti ti-alert-circle"></i>

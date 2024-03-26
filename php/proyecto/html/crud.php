@@ -32,10 +32,26 @@ if (isset($_POST['edit_career']))
 // Crear un estudiante
 if (isset($_POST['new_student']))
 {
+    // Datos necesarios para añadir un nuevo estudiante
+    $career_id = $_POST['student_career'];
     $student_name = $_POST['student_name'];
     $student_email = $_POST['student_email'];
-    $sql = "INSERT INTO students (name,email) VALUES ('$student_name,$student_email')";
+    $student_tutor = $_POST['student_tutor'];
+    $sql = "INSERT INTO students (id_career,id_tutor,student_name,email) VALUES ($career_id,$student_tutor,'$student_name','$student_email')";
     $conn->query($sql);
+
+    // Esta variable es un array y es opcional así que hay que verificar si existe
+    if (isset ($_POST['subjects']))
+    {
+        // Obtener el id del estudiante recién insertado
+        $student_id = $conn->query("SELECT LAST_INSERT_ID() as last")->fetch_assoc()['last'];
+        $subjects = $_POST['subjects']; // Arreglo de materias
+        foreach ($subjects as $subject_id)
+        {
+            $sql = "INSERT INTO student_subject (id_student,id_subject) VALUES ($student_id,$subject_id)";
+            $conn->query($sql);
+        }
+    }
     header('Location: list_students.php');
 }
 
@@ -56,4 +72,36 @@ if (isset($_POST['edit_student']))
     $student_name = $_POST['student_name'];
     $student_email = $_POST['student_email'];
     // TODO Obtener carreras
+}
+
+// Agregar un nuevo tutor
+if (isset($_POST['new_tutor']))
+{
+    $tutor_name = $_POST['tutor_name'];
+    $tutor_email = $_POST['tutor_email'];
+    $career_id = $_POST['tutor_career'];
+    $sql = "INSERT INTO tutors (id_career,name,email) VALUES ($career_id,'$tutor_name','$tutor_email')";
+    $conn->query($sql);
+    header('Location: list_tutors.php');
+}
+
+// Eliminar un tutor por id
+if (isset($_GET['delete_tutor']))
+{
+    $tutor_id = $_GET['delete_tutor'];
+    $sql = "DELETE FROM tutors WHERE id_tutor = $tutor_id";
+    $conn->query($sql);
+    header('Location: list_tutors.php');
+}
+
+// Editar un tutor por id
+if (isset($_POST['edit_tutor']))
+{
+    $tutor_id = $_POST['tutor_id'];
+    $tutor_name = $_POST['tutor_name'];
+    $tutor_email = $_POST['tutor_email'];
+    $career_id = $_POST['tutor_career'];
+    $sql = "UPDATE tutors SET name = '$tutor_name', email = '$tutor_email', id_career = $career_id WHERE id_tutor = $tutor_id";
+    $conn->query($sql);
+    header('Location: list_tutors.php');
 }

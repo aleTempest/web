@@ -16,3 +16,19 @@ function get_career_count() : int
     $row = $conn->query($sql)->fetch_assoc();
     return $row['total'];
 }
+
+function get_student_count() : int
+{
+    global $conn;
+    $sql = "SELECT COUNT(id_student) as total FROM students";
+    $row = $conn->query($sql)->fetch_assoc();
+    return $row['total'];
+}
+
+function get_tutor_count() : int
+{
+    global $conn;
+    $sql = "SELECT COUNT(id_tutor) as total FROM tutors";
+    $row = $conn->query($sql)->fetch_assoc();
+    return $row['total'];
+}
