@@ -1,10 +1,16 @@
+<?php
+require_once 'credentials.php';
+
+// Catálogo de materias
+$res = $conn->query("SELECT * FROM subject_career_view");
+?>
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alta de carreras</title>
+    <title>Materias</title>
     <script src="https://kit.fontawesome.com/13fe039f9d.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
@@ -32,6 +38,7 @@
         </div>
         <!-- End Sidebar scroll-->
     </aside>
+    <!--  Sidebar End -->
     <!--  Main wrapper -->
     <div class="body-wrapper">
         <!--  Header Start -->
@@ -50,20 +57,33 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title fw-semibold mb-4">Añadir una nueva carrera</h5>
-                    <form method="post" action="crud.php">
-                        <div class="mb-3">
-                            <label for="career_name" class="form-label">Nombre de la carrera</label>
-                            <input name="career_name" type="text" class="form-control">
-                        </div>
-                        <button name="new_career" type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
-                    </form>
+                    <h5 class="card-title fw-semibold mb-4">Lista de materias</h5>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Carrera</th>
+                            <td><a href="add_subject_form.php" class="btn btn-success "><i class="fa-solid fa-plus"></i></a></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        while ($row = $res->fetch_assoc())
+                        {
+                            echo '<tr>';
+                            echo '<td>' . $row['subject_name'] . '</td>';
+                            echo '<td>' . $row['career_name'] . '</td>';
+                            echo '<td><a href="edit_subject_form.php?id=' . $row['id_subject'] . '" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a> ';
+                            echo '<a href="delete_subject.php?id=' . $row['id_subject'] . '" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

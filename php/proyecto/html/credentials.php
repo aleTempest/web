@@ -1,8 +1,8 @@
 <?php
 // Credenciales para la base de datos
 $servername = "db";
-$username = "ale";
-$password = "elaina";
+$username = "root";
+$password = "";
 $dbname = "proyecto";
 
 // Instanciar objeto de conexión a mysql

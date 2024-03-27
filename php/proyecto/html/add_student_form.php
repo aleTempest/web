@@ -13,6 +13,7 @@ $res1 = $conn->query($sql1);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Alta de estudiantes</title>
+    <script src="https://kit.fontawesome.com/13fe039f9d.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
@@ -86,7 +87,7 @@ $res1 = $conn->query($sql1);
                                             ?>
                                         </select>
                                     </div>
-                                    <button name="new_student" type="submit" class="btn btn-primary">Guardar</button>
+                                    <button name="new_student" type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
                                 </form>
                             </div>
                         </div>

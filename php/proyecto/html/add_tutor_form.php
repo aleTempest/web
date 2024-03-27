@@ -58,6 +58,7 @@ $res = $conn->query($sql);
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Agregar tutor</h5>
                     <form action="crud.php" method="post">
+                        <div class="mb-3">
                         <label class="form-label" for="tutor_name">Nombre</label>
                         <input type="text" class="form-control" name="tutor_name">
                         <label class="form-label" for="tutor_email">Email</label>
@@ -71,6 +72,7 @@ $res = $conn->query($sql);
                             }
                             ?>
                         </select>
+                        </div>
                         <button class="btn btn-success" name="new_tutor">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
                     </form>
                 </div>

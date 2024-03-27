@@ -100,7 +100,7 @@ $subjects_res = $conn->query($sql2);
                                 </tbody>
                             </table>
                         </div>
-                        <button type="submit" class="btn btn-success" name="new_student">Guardar  <i class="fa-solid fa-floppy-disk"></i></button>
+                        <button type="submit" class="btn btn-success" name="new_student">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
                     </form>
                 </div>
             </div>

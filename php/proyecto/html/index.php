@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alta de carreras</title>
-    <script src="https://kit.fontawesome.com/13fe039f9d.js" crossorigin="anonymous"></script>
+    <title></title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
@@ -32,6 +31,7 @@
         </div>
         <!-- End Sidebar scroll-->
     </aside>
+    <!--  Sidebar End -->
     <!--  Main wrapper -->
     <div class="body-wrapper">
         <!--  Header Start -->
@@ -50,20 +50,12 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title fw-semibold mb-4">Añadir una nueva carrera</h5>
-                    <form method="post" action="crud.php">
-                        <div class="mb-3">
-                            <label for="career_name" class="form-label">Nombre de la carrera</label>
-                            <input name="career_name" type="text" class="form-control">
-                        </div>
-                        <button name="new_career" type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
-                    </form>
+                    <h5 class="card-title fw-semibold mb-4">Asies</h5>
+                    <p class="mb-0">This is a sample page </p>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
