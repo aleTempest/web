@@ -105,3 +105,32 @@ if (isset($_POST['edit_tutor']))
     $conn->query($sql);
     header('Location: list_tutors.php');
 }
+
+// Agregar una nueva materia
+if (isset($_POST['new_subject']))
+{
+    $career_id = $_POST['career_id'];
+    $subject_name = $_POST['subject_name'];
+    $sql = "INSERT INTO subjects (id_career,subject_name) VALUES ($career_id,'$subject_name')";
+    $conn->query($sql);
+    header('Location: list_subjects.php');
+}
+
+// Eliminar una materia por id
+if (isset($_GET['delete_subject']))
+{
+    $subject_id = $_GET['delete_subject'];
+    $sql = "DELETE FROM subjects WHERE id_subject = $subject_id";
+    $conn->query($sql);
+    header('Location: list_subjects.php');
+}
+
+// Editar una materia por id
+if (isset($_POST['edit_subject']))
+{
+    $subject_id = $_POST['subject_id'];
+    $subject_name = $_POST['subject_name'];
+    $sql = "UPDATE subjects SET subject_name = '$subject_name' WHERE id_subject = $subject_id";
+    $conn->query($sql);
+    header('Location: list_subjects.php');
+}

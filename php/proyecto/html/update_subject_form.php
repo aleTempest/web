@@ -1,5 +1,9 @@
 <?php
-$career_id = $_GET['career_id'];
+require_once 'credentials.php';
+
+$subject_id = $_GET['id'];
+$sql = "SELECT * FROM subjects WHERE id_subject = $subject_id";
+$row = $conn->query($sql)->fetch_assoc();
 ?>
 <!doctype html>
 <html lang="en">
@@ -54,14 +58,15 @@ $career_id = $_GET['career_id'];
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title fw-semibold mb-4">Añadir materia</h5>
+                    <h5 class="card-title fw-semibold mb-4">Editar materia</h5>
                     <form method="post" action="crud.php">
                         <div class="mb-3">
-                            <input type="hidden" name="career_id" value="<?php echo $career_id?>">
+                            <input type="hidden" name="career_id" value="<?php echo $row['id_career'] ?>">
+                            <input type="hidden" name="subject_id" value="<?php echo $row['id_subject'] ?>">
                             <label for="subject_name" class="form-label">Nombre de la materia</label>
-                            <input name="subject_name" type="text" class="form-control">
+                            <input name="subject_name" type="text" class="form-control" value="<?php echo $row['subject_name'] ?>">
                         </div>
-                        <button name="new_subject" type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
+                        <button name="edit_subject" type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
                     </form>
                 </div>
             </div>

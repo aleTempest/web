@@ -60,22 +60,24 @@ $res = $conn->query($sql);
                     <h5 class="card-title fw-semibold mb-4">Lista de materias</h5>
                     <div class="mb-3">
                         <label class="form-label" for="careerid">Carrera</label>
-                        <select class="form-control" name="career_id" id="career_selected">
-                            <?php
-
-                            while ($row = $res->fetch_assoc())
-                            {
-                                echo '<option value="' . $row['id_career'] . '">' . $row['career_name'] . '</option>';
-                            }
-                            ?>
-                        </select>
+                        <form action="add_subject_form.php" class="d-flex align-items-center">
+                            <select class="form-control" name="career_id" id="career_selected">
+                                <?php
+                                while ($row = $res->fetch_assoc())
+                                {
+                                    echo '<option value="' . $row['id_career'] . '">' . $row['career_name'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                            <button type="submit" class="btn btn-success "><i class="fa-solid fa-plus"></i></button>
+                        </form>
                     </div>
 
                     <table class="table table-hover">
                         <thead>
                         <tr id="head">
                             <th>Nombre</th>
-                            <td><a href="add_subject_form.php" class="btn btn-success "><i class="fa-solid fa-plus"></i></a></td>
+                            <th>Controles</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -87,8 +89,8 @@ $res = $conn->query($sql);
                             echo '<tr id="' . $row['id_career'] .  '">';
                             echo '<td>' . $row['subject_name'] . '</td>';
                             // echo '<td>' . $row['career_name'] . '</td>'; // redundante
-                            echo '<td><a href="edit_subject_form.php?id=' . $row['id_subject'] . '" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a> ';
-                            echo '<a href="delete_subject.php?id=' . $row['id_subject'] . '" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></td>';
+                            echo '<form action="crud.php" method="get"><td><a href="update_subject_form.php?id=' . $row['id_subject'] . '" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a> ';
+                            echo '<button type="submit" name="delete_subject" class="btn btn-danger" value="' . $row['id_subject'] . '"><i class="fa-solid fa-trash"></i></a></td></form>';
                             echo '</tr>';
                         }
                         ?>
@@ -103,8 +105,6 @@ $res = $conn->query($sql);
     /**
      * Esta función toma como parámetros un array de elementos de un select y un elemento seleccionado. Compara cada
      * elemento del array con el elemento seleccionado y escoende los elementos que no coinciden. El resto se resetean.
-     * @param elements
-     * @param selectedValue
      */
     function hideElements(elements, selectedValue) {
         for (var i = 0; i < elements.length; i++) {
@@ -127,6 +127,7 @@ $res = $conn->query($sql);
     select.addEventListener('change', function() {  // oculta los elementos cada que el select cambia
         hideElements(elements, this.value);
     });
+
 </script>
 <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
