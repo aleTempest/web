@@ -1,8 +1,8 @@
 <?php
 require_once 'credentials.php';
 
-// Catálogo de materias
-$res = $conn->query("SELECT * FROM subject_career_view");
+$sql = "SELECT * FROM careers";
+$res = $conn->query($sql);
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,21 +58,35 @@ $res = $conn->query("SELECT * FROM subject_career_view");
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Lista de materias</h5>
+                    <div class="mb-3">
+                        <label class="form-label" for="careerid">Carrera</label>
+                        <select class="form-control" name="career_id" id="career_selected">
+                            <?php
+
+                            while ($row = $res->fetch_assoc())
+                            {
+                                echo '<option value="' . $row['id_career'] . '">' . $row['career_name'] . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+
                     <table class="table table-hover">
                         <thead>
-                        <tr>
+                        <tr id="head">
                             <th>Nombre</th>
-                            <th>Carrera</th>
                             <td><a href="add_subject_form.php" class="btn btn-success "><i class="fa-solid fa-plus"></i></a></td>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
+                        $sql = "SELECT * FROM subject_career_view"; // resetear la consulta
+                        $res = $conn->query($sql);
                         while ($row = $res->fetch_assoc())
                         {
-                            echo '<tr>';
+                            echo '<tr id="' . $row['id_career'] .  '">';
                             echo '<td>' . $row['subject_name'] . '</td>';
-                            echo '<td>' . $row['career_name'] . '</td>';
+                            // echo '<td>' . $row['career_name'] . '</td>'; // redundante
                             echo '<td><a href="edit_subject_form.php?id=' . $row['id_subject'] . '" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a> ';
                             echo '<a href="delete_subject.php?id=' . $row['id_subject'] . '" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></td>';
                             echo '</tr>';
@@ -85,11 +99,39 @@ $res = $conn->query("SELECT * FROM subject_career_view");
         </div>
     </div>
 </div>
+<script>
+    /**
+     * Esta función toma como parámetros un array de elementos de un select y un elemento seleccionado. Compara cada
+     * elemento del array con el elemento seleccionado y escoende los elementos que no coinciden. El resto se resetean.
+     * @param elements
+     * @param selectedValue
+     */
+    function hideElements(elements, selectedValue) {
+        for (var i = 0; i < elements.length; i++) {
+            if (elements[i].id !== selectedValue) {
+                // esconder ele elemento
+                elements[i].style.display = 'none';
+            } else {
+                // resetear el elemento
+                elements[i].style.display = '';
+            }
+        }
+    }
+
+    // Hay que seleccionar los elementos desde el cuerpo de la tabla para que el encabezado no se esconda trambién.
+    var tbody = document.querySelector('tbody')
+    var elements = tbody.getElementsByTagName('tr')
+    hideElements(elements, document.getElementById('career_selected').value); // Ocultar elementos al cargar la página
+    var select = document.getElementById('career_selected');
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
+    select.addEventListener('change', function() {  // oculta los elementos cada que el select cambia
+        hideElements(elements, this.value);
+    });
+</script>
 <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../assets/js/sidebarmenu.js"></script>
 <script src="../assets/js/app.min.js"></script>
 <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
 </body>
-
 </html>
