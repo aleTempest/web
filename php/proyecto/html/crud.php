@@ -52,6 +52,7 @@ if (isset($_POST['new_student']))
             $conn->query($sql);
         }
     }
+
     header('Location: list_students.php');
 }
 
@@ -73,6 +74,21 @@ if (isset($_POST['edit_student_data']))
     $student_email = $_POST['student_email'];
     $sql = "UPDATE students SET id_tutor = $tutor_id, student_name = '$student_name', email = '$student_email' WHERE id_student = $student_id";
     $conn->query($sql);
+
+    // Obtener las materias selecionadas
+    if (isset($_POST['subjects']))
+    {
+        $subjects = $_POST['subjects'];
+        // Borrar todas las materias del estudiante y volver a insertar las seleccionadas, la otra opción sería
+        // obtener las viejas y compararlas con las nuevas
+        $sql = "DELETE FROM student_subject WHERE id_student = $student_id"; // cheese
+        $conn->query($sql);
+        foreach($subjects as $subject_id)
+        {
+            $sql = "INSERT INTO student_subject (id_student,id_subject) VALUES ($student_id,$subject_id)";
+            $conn->query($sql);
+        }
+    }
     header('Location: list_students.php');
 }
 

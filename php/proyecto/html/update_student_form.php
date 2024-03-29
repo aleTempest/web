@@ -86,57 +86,45 @@ $student_subject_id = array_map(function($row) {
                             <label class="form-label" for="student_email">Email</label>
                             <input class="form-control" type="text" name="student_email" value="<?php echo $row_student['email'] ?>">
                         </div>
-                        <button type="submit" class="btn btn-success" name="edit_student_data">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
-                    </form>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title fw-semibold mb-4">Carreras disponibles</h5>
-                    <form action="crud.php" method="post">
-                        <div class="mb-3">
-                            <input type="hidden" value="<?php echo $row_student['id_student'] ?>">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Materia</th>
-                                    <th>Seleccionar</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                while ($row_career = $res_careers->fetch_assoc())
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Materia</th>
+                                <th>Seleccionar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            while ($row_career = $res_careers->fetch_assoc())
+                            {
+                                echo "<tr>";
+                                echo "<td>" . $row_career['subject_name'] . "</td>";
+                                // Comprobar si la materia está seleccionada comprobando si el id actual se encuentra
+                                // en el id de las materias del estudiante, en caso verdadero el checkbox se marca
+                                if (in_array($row_career['id_subject'], $student_subject_id))
                                 {
-                                    echo "<tr>";
-                                    echo "<td>" . $row_career['subject_name'] . "</td>";
-                                    // Comprobar si la materia está seleccionada comprobando si el id actual se encuentra
-                                    // en el id de las materias del estudiante, en caso verdadero el checkbox se marca
-                                    if (in_array($row_career['id_subject'], $student_subject_id))
-                                    {
-                                        echo '<td> <div class="form-check form-switch"> <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox" name="subjects[]" value="' . $row_career['id_subject'] . '" checked></div></td>';
-                                    } // Caso contrario se deja desmarcado
-                                    else
-                                    {
-                                        echo '<td> <div class="form-check form-switch"> <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox" name="subjects[]" value="' . $row_career['id_subject'] . '"></div></td>';
-                                    }
-                                    echo "</tr>";
+                                    echo '<td> <div class="form-check form-switch"> <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox" name="subjects[]" value="' . $row_career['id_subject'] . '" checked></div></td>';
+                                } // Caso contrario se deja desmarcado
+                                else
+                                {
+                                    echo '<td> <div class="form-check form-switch"> <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox" name="subjects[]" value="' . $row_career['id_subject'] . '"></div></td>';
                                 }
-                                ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <button class="btn btn-success" name="edit_student_subjects">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
+                                echo "</tr>";
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-success" name="edit_student_data">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/js/sidebarmenu.js"></script>
-<script src="../assets/js/app.min.js"></script>
-<script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/sidebarmenu.js"></script>
+    <script src="../assets/js/app.min.js"></script>
+    <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
 </body>
 
 </html>
