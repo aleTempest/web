@@ -40,13 +40,13 @@ if (isset($_POST['new_student']))
     $sql = "INSERT INTO students (id_career,id_tutor,student_name,email) VALUES ($career_id,$student_tutor,'$student_name','$student_email')";
     $conn->query($sql);
 
-    // Esta variable es un array y es opcional así que hay que verificar si existe
+    // Esta variable es un array y es opcional
     if (isset ($_POST['subjects']))
     {
         // Obtener el id del estudiante recién insertado
         $student_id = $conn->query("SELECT LAST_INSERT_ID() as last")->fetch_assoc()['last'];
-        $subjects = $_POST['subjects']; // Arreglo de materias
-        foreach ($subjects as $subject_id)
+        $subjects = $_POST['subjects']; // array de materias
+        foreach ($subjects as $subject_id) // por cada materia seleccionada se hace un insert
         {
             $sql = "INSERT INTO student_subject (id_student,id_subject) VALUES ($student_id,$subject_id)";
             $conn->query($sql);
@@ -65,13 +65,15 @@ if (isset($_GET['delete_student']))
 }
 
 // Editar un estudiante por id
-if (isset($_POST['edit_student']))
+if (isset($_POST['edit_student_data']))
 {
     $student_id = $_POST['student_id'];
     $tutor_id = $_POST['tutor_id'];
     $student_name = $_POST['student_name'];
     $student_email = $_POST['student_email'];
-    // TODO Obtener carreras
+    $sql = "UPDATE students SET id_tutor = $tutor_id, student_name = '$student_name', email = '$student_email' WHERE id_student = $student_id";
+    $conn->query($sql);
+    header('Location: list_students.php');
 }
 
 // Agregar un nuevo tutor

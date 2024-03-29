@@ -79,7 +79,8 @@ $student_subject_id = array_map(function($row) {
                     <h5 class="card-title fw-semibold mb-4">Datos del estudiante</h5>
                     <form action="crud.php" method="post">
                         <div class="mb-3">
-                            <input type="hidden" value="<?php echo $row_student['id_student'] ?>">
+                            <input type="hidden" name="student_id" value="<?php echo $row_student['id_student'] ?>">
+                            <input type="hidden" name="tutor_id" value="<?php echo $row_student['id_tutor'] ?>">
                             <label class="form-label" for="student_name" class="form-label">Nombre</label>
                             <input class="form-control" type="text" name="student_name" value="<?php echo $row_student['student_name'] ?>">
                             <label class="form-label" for="student_email">Email</label>
