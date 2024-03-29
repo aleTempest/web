@@ -1,21 +1,19 @@
 <?php
 require_once 'credentials.php';
 
+// ids requeridos para hacer las consultas y obtener los datos del estudiante
 $student_id = $_GET['id_student'];
 $career_id = $_GET['id_career'];
 
-$sql1 = "SELECT * FROM student_subject_career_view WHERE id_student = $student_id";
-$sql2 = "SELECT * FROM subjects WHERE id_career = $career_id";
+$sql1 = "SELECT * FROM student_subject_career_view WHERE id_student = $student_id"; // Materias del estudiante
+$sql2 = "SELECT * FROM subjects WHERE id_career = $career_id"; // materias en general
+$sql3 = "SELECT * FROM students WHERE id_student = $student_id"; // Datos del estudiante
 $res_student = $conn->query($sql1);
-$row_student = $conn->query($sql1)->fetch_assoc(); // array que contiene los datos del estudiante
-$res_careers = $conn->query($sql2); // carreras disponibles para el estudiante
-/**
- * Guardar los id de las materias que ya tiene el estudiante en un array para poder comparar.
- * pero se puede una función de orden superior para lograr lo mismo
- * https://www.php.net/manual/en/function.array-map.php
- * https://www.sitepoint.com/functional-programming-in-php-higher-order-functions/#:~:text=Are%20there%20any%20built%2Din,array_map%2C%20array_filter%2C%20and%20array_reduce.
- **/
-/*$arr = Array();
+$res_careers = $conn->query($sql2);
+$row_student = $conn->query($sql3)->fetch_assoc();
+
+// Guardar los ids de las materias del estudiante en un array
+/* $arr = Array();
 while ($row = $res_student->fetch_assoc())
 {
     $arr[] = $row['id_subject'];
@@ -85,7 +83,7 @@ $student_subject_id = array_map(function($row) {
                             <label class="form-label" for="student_name" class="form-label">Nombre</label>
                             <input class="form-control" type="text" name="student_name" value="<?php echo $row_student['student_name'] ?>">
                             <label class="form-label" for="student_email">Email</label>
-                            <input class="form-control" type="text" name="student_email" value="<?php echo $row_student['student_email'] ?>">
+                            <input class="form-control" type="text" name="student_email" value="<?php echo $row_student['email'] ?>">
                         </div>
                         <button type="submit" class="btn btn-success" name="edit_student_data">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
                     </form>
@@ -106,20 +104,20 @@ $student_subject_id = array_map(function($row) {
                                 </thead>
                                 <tbody>
                                 <?php
-
-                                $k = 0; // contador para iterar en el array de ids de materias del estudiante
                                 while ($row_career = $res_careers->fetch_assoc())
                                 {
                                     echo "<tr>";
                                     echo "<td>" . $row_career['subject_name'] . "</td>";
-                                    // wn caso de que el estudiante ya tenga la matería, se marca el checkbox como checado
-                                    if ($row_career['id_subject'] == $student_subject_id[$k] && $student_subject_id[$k]) // TODO arreglarlo
-                                        // solo marca los primeros 3 y los demas los marca como undefined
+                                    // Comprobar si la materia está seleccionada comprobando si el id actual se encuentra
+                                    // en el id de las materias del estudiante, en caso verdadero el checkbox se marca
+                                    if (in_array($row_career['id_subject'], $student_subject_id))
+                                    {
                                         echo '<td> <div class="form-check form-switch"> <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox" name="subjects[]" value="' . $row_career['id_subject'] . '" checked></div></td>';
-                                    // caso contrario se deja sin marcar
+                                    } // Caso contrario se deja desmarcado
                                     else
+                                    {
                                         echo '<td> <div class="form-check form-switch"> <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox" name="subjects[]" value="' . $row_career['id_subject'] . '"></div></td>';
-                                    $k++;
+                                    }
                                     echo "</tr>";
                                 }
                                 ?>

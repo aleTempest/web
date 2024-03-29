@@ -1,10 +1,5 @@
 <?php
 require_once 'credentials.php';
-$headers = Array(
-    "Nombre",
-    "Correo",
-    "Carrera"
-);
 $sql = "SELECT * FROM tutors_careers_view ";
 $res = $conn->query($sql);
 ?>
@@ -65,12 +60,9 @@ $res = $conn->query($sql);
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <?php
-                            foreach ($headers as $header)
-                            {
-                                echo '<th>' . $header . '</th>';
-                            }
-                            ?>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Carrera</th>
                             <td><a href="add_tutor_form.php" class="btn btn-success "><i class="fa-solid fa-plus"></i></a></td>
                         </tr>
                         </thead>
@@ -84,9 +76,9 @@ $res = $conn->query($sql);
                             echo '<td>' . $row['tutor_email'] . '</td>';
                             echo '<td>' . $row['career_name'] . '</td>';
                             echo '<td><form method="get" action="crud.php">';
-                            echo '<button name="delete_tutor" class="btn btn-danger" value="' . $row['id_tutor'] . '"> <i class="fa-solid fa-trash"></i> </button> ';
+                            echo '<button name="delete_tutor" class="btn btn-danger" value="' . $row['id_tutor'] . '"> <i class="fa-solid fa-trash"></i> </button></form> ';
                             echo '<a class="btn btn-primary" href="update_tutor_form.php?id=' . $row['id_tutor'] . '"> <i class="fa-solid fa-pencil"></i> </a>';
-                            echo '</form></td></tr>';
+                            echo '</td></tr>';
                         }
                         ?>
                         </tbody>
