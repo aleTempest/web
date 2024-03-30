@@ -1,9 +1,14 @@
 <?php
 require_once 'credentials.php';
-$tutor_id = $_GET['id_tutor'];
-$career_id = $_GET['id_career'];
-$sql = "SELECT * FROM tutors WHERE id_tutor = $tutor_id";
-$row = $conn->query($sql)->fetch_assoc();
+
+$career_id = $_POST['career_id'];
+$sql1 = "SELECT * FROM subjects WHERE id_career = $career_id";
+$sql2 = "SELECT * FROM tutors WHERE id_career = $career_id";
+$sql3 = "SELECT * FROM students WHERE id_career = $career_id";
+
+$res_subjects = $conn->query($sql1);
+$res_tutors = $conn->query($sql2);
+$res_students = $conn->query($sql3);
 ?>
 <!doctype html>
 <html lang="en">
@@ -11,7 +16,7 @@ $row = $conn->query($sql)->fetch_assoc();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Editar Tutor</title>
+    <title></title>
     <script src="https://kit.fontawesome.com/13fe039f9d.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
@@ -58,15 +63,37 @@ $row = $conn->query($sql)->fetch_assoc();
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title fw-semibold mb-4">Datos del tutor</h5>
-                    <form action="crud.php">
+                    <h5 class="card-title fw-semibold mb-4">Añadir tutoría</h5>
+                    <form action="crud.php" method="post">
                         <div class="mb-3">
-                            <label class="form-label" for="tutor_name">Nombre</label>
-                            <input class="form-control" type="text" name="tutor_name" value="<?php echo $row['name'] ?>">
-                            <label class="form-label" for="tutor_email">Email</label>
-                            <input class="form-control" type="text" name="tutor_email" value="<?php echo $row['email'] ?>">
+                            <input type="hidden" name="career_id" value="<?php echo $career_id ?>">
+                            <label for="student_id" class="form-label">Alumno</label>
+                            <select class="form-control" name="student_id" class="form-control">
+                                <?php
+                                while ($row_students = $res_students->fetch_assoc())
+                                    echo "<option value='" . $row_students['id_student'] . "'>" . $row_students['student_name'] . "</option>";
+                                ?>
+                            </select>
+                            <label for="tutor_id" class="form-label">Tutor</label>
+                            <select name="tutor_id" class="form-control">
+                                <?php
+                                while ($row_tutors = $res_tutors->fetch_assoc())
+                                    echo "<option value='" . $row_tutors['id_tutor'] . "'>" . $row_tutors['name'] . "</option>";
+                                ?>
+                            </select>
+                            <label for="subject_id" class="form-label">Materia</label>
+                            <select name="subject_id" class="form-control" >
+                                <?php
+                                while ($row_subjects = $res_subjects->fetch_assoc())
+                                    echo "<option value='" . $row_subjects['id_subject'] . "'>" . $row_subjects['subject_name'] . "</option>";
+                                ?>
+                            </select>
+                            <label for="observations" class="form-label">Observaciones</label>
+                            <textarea type="text" name="observations" class="form-control" rows="3"></textarea>
+                            <label for="tutoring_date" class="form-label">Fecha</label>
+                            <input type="date" name="tutoring_date" class="form-control">
                         </div>
-                        <button class="btn btn-success" name="edit_tutor">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
+                        <button name="new_tutoring" type="submit" class="btn btn-primary">Guardar</button>
                     </form>
                 </div>
             </div>

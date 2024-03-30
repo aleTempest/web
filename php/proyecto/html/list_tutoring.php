@@ -1,12 +1,7 @@
 <?php
 require_once 'credentials.php';
-$headers = Array(
-    "Nombre",
-    "Correo",
-    "Tutor",
-    "Carrera"
-);
-$sql = "SELECT * FROM students_tutors_view";
+
+$sql = "SELECT * FROM careers";
 $res = $conn->query($sql);
 ?>
 <!doctype html>
@@ -15,7 +10,7 @@ $res = $conn->query($sql);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Estudiantes</title>
+    <title>Tutorías</title>
     <script src="https://kit.fontawesome.com/13fe039f9d.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
@@ -62,34 +57,48 @@ $res = $conn->query($sql);
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title fw-semibold mb-4 ">Lista de estudiantes</h5>
+                    <h5 class="card-title fw-semibold mb-4">Lista de tutorías</h5>
+                    <div class="mb-3">
+                        <form action="add_tutoring_form.php" method="post" class="d-flex align-items-center">
+                            <select class="form-control" name="career_id">
+                                <?php
+                                while ($row = $res->fetch_assoc())
+                                {
+                                    echo '<option value="' . $row['id_career'] . '">' . $row['career_name'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                            <button type="submit" class="btn btn-success "><i class="fa-solid fa-plus"></i></button>
+                        </form>
+                    </div>
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <?php
-                            foreach ($headers as $header)
-                            {
-                                echo '<th>' . $header . '</th>';
-                            }
-                            ?>
-                            <td><a href="add_student_form.php" class="btn btn-success "><i class="fa-solid fa-plus"></i></a></td>
+                            <th>Tutor</th>
+                            <th>Alumno</th>
+                            <th>Materia</th>
+                            <th>Observaciones</th>
+                            <th>Fecha</th>
+                            <th>Controles</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        // iterar en los resultados de la consulta y imprimirlos en la tabla
-
+                        $sql = "SELECT * FROM tutoring_sessions_view ";
+                        $res = $conn->query($sql);
                         while ($row = $res->fetch_assoc())
                         {
                             echo '<tr>';
-                            echo '<td>' . $row['student_name'] . '</td>';
-                            echo '<td>' . $row['student_email'] . '</td>';
                             echo '<td>' . $row['tutor_name'] . '</td>';
-                            echo '<td>' . $row['career_name'] . '</td>';
-                            echo '<td><form method="get" action="crud.php">';
-                            echo '<button name="delete_student" class="btn btn-danger" value="' . $row['id_student'] . '"><i class="fa-solid fa-trash"></i></button> ';
-                            echo '<a class="btn btn-primary" href="update_student_form.php?id_student=' . $row['id_student'] . '&id_career=' . $row['id_career'] . '"> <i class="fa-solid fa-pencil"></i></a>';
-                            echo '</form></td></tr>';
+                            echo '<td>' . $row['student_name'] . '</td>';
+                            echo '<td>' . $row['subject_name'] . '</td>';
+                            echo '<td>' . $row['observations'] . '</td>';
+                            echo '<td>' . $row['tutoring_date'] . '</td>';
+                            echo '<td><form action="crud.php" method="get">';
+                            echo '<button name="delete_tutoring" class="btn btn-danger" value="' . $row['id'] . '"><i class="fa-solid fa-trash"></i></button> ';
+                            echo '<a href="update_tutoring_form.php?id=' . $row['id'] . '&id_career=' . $row['id_career'] . '&id_student=' . $row['id_student'] . '&id_tutor=' . $row['id_tutor'] . '&id_subject=' . $row['id_subject'] . '" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a> ';
+                            echo '</form></td>';
+                            echo '</tr>';
                         }
                         ?>
                         </tbody>

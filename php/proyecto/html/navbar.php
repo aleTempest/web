@@ -41,6 +41,14 @@
             </a>
         </li>
         <li class="sidebar-item">
+            <a class="sidebar-link" href="list_tutoring.php" aria-expanded="false">
+				<span>
+					<i class="ti ti-article"></i>
+				</span>
+                <span class="hide-menu">Tutorías</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
             <a class="sidebar-link" href="list_tutors.php" aria-expanded="false">
 				<span>
 					<i class="ti ti-article"></i>

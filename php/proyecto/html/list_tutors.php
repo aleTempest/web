@@ -77,7 +77,7 @@ $res = $conn->query($sql);
                             echo '<td>' . $row['career_name'] . '</td>';
                             echo '<td><form method="get" action="crud.php">';
                             echo '<button name="delete_tutor" class="btn btn-danger" value="' . $row['id_tutor'] . '"> <i class="fa-solid fa-trash"></i> </button></form> ';
-                            echo '<a class="btn btn-primary" href="update_tutor_form.php?id=' . $row['id_tutor'] . '"> <i class="fa-solid fa-pencil"></i> </a>';
+                            echo '<a class="btn btn-primary" href="update_tutor_form.php?id_tutor=' . $row['id_tutor'] . '&id_career=' . $row['id_career'] . '"> <i class="fa-solid fa-pencil"></i> </a>';
                             echo '</td></tr>';
                         }
                         ?>

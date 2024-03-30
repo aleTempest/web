@@ -89,8 +89,10 @@ $res = $conn->query($sql);
                             echo '<tr id="' . $row['id_career'] .  '">';
                             echo '<td>' . $row['subject_name'] . '</td>';
                             // echo '<td>' . $row['career_name'] . '</td>'; // redundante
-                            echo '<form action="crud.php" method="get"><td><a href="update_subject_form.php?id=' . $row['id_subject'] . '" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a> ';
-                            echo '<button type="submit" name="delete_subject" class="btn btn-danger" value="' . $row['id_subject'] . '"><i class="fa-solid fa-trash"></i></a></td></form>';
+                            echo '<form action="crud.php" method="get"><td>';
+                            echo '<button type="submit" name="delete_subject" class="btn btn-danger" value="' . $row['id_subject'] . '"><i class="fa-solid fa-trash"></i></button> ';
+                            echo '<a href="update_subject_form.php?id=' . $row['id_subject'] . '" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a> ';
+                            echo '</td></form>';
                             echo '</tr>';
                         }
                         ?>
