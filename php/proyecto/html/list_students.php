@@ -1,6 +1,6 @@
 <?php
 require_once 'credentials.php';
-$headers = Array(
+$headers = array(
     "Nombre",
     "Correo",
     "Tutor",
@@ -67,8 +67,7 @@ $res = $conn->query($sql);
                         <thead>
                         <tr>
                             <?php
-                            foreach ($headers as $header)
-                            {
+                            foreach ($headers as $header) {
                                 echo '<th>' . $header . '</th>';
                             }
                             ?>
@@ -79,8 +78,7 @@ $res = $conn->query($sql);
                         <?php
                         // iterar en los resultados de la consulta y imprimirlos en la tabla
 
-                        while ($row = $res->fetch_assoc())
-                        {
+                        while ($row = $res->fetch_assoc()) {
                             echo '<tr>';
                             echo '<td>' . $row['student_name'] . '</td>';
                             echo '<td>' . $row['student_email'] . '</td>';

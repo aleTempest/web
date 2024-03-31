@@ -2,26 +2,23 @@
 require_once 'credentials.php';
 
 // Crear una carrera
-if (isset($_POST['new_career']))
-{
-  $career_name = $_POST['career_name'];
-  $sql = "INSERT INTO careers (career_name) VALUES ('$career_name')";
-  $conn->query($sql);
-  header('Location: list_career.php');
+if (isset($_POST['new_career'])) {
+    $career_name = $_POST['career_name'];
+    $sql = "INSERT INTO careers (career_name) VALUES ('$career_name')";
+    $conn->query($sql);
+    header('Location: list_career.php');
 }
 
 // Eliminar una carrera por id
-if (isset($_GET['delete_career']))
-{
-  $career_id = $_GET['delete_career'];
-  $sql = "DELETE FROM careers WHERE id_career = '$career_id'";
-  $conn->query($sql);
-  header('Location: list_career.php');
+if (isset($_GET['delete_career'])) {
+    $career_id = $_GET['delete_career'];
+    $sql = "DELETE FROM careers WHERE id_career = '$career_id'";
+    $conn->query($sql);
+    header('Location: list_career.php');
 }
 
 // Modificar una carrera por id
-if (isset($_POST['edit_career']))
-{
+if (isset($_POST['edit_career'])) {
     $career_id = $_POST['career_id'];
     $career_name = $_POST['career_name'];
     $sql = "UPDATE careers SET career_name = '$career_name' WHERE id_career = $career_id";
@@ -30,8 +27,7 @@ if (isset($_POST['edit_career']))
 }
 
 // Crear un estudiante
-if (isset($_POST['new_student']))
-{
+if (isset($_POST['new_student'])) {
     // Datos necesarios para añadir un nuevo estudiante
     $career_id = $_POST['student_career'];
     $student_name = $_POST['student_name'];
@@ -41,13 +37,11 @@ if (isset($_POST['new_student']))
     $conn->query($sql);
 
     // Esta variable es un array y es opcional
-    if (isset ($_POST['subjects']))
-    {
+    if (isset($_POST['subjects'])) {
         // Obtener el id del estudiante recién insertado
         $student_id = $conn->query("SELECT LAST_INSERT_ID() as last")->fetch_assoc()['last'];
         $subjects = $_POST['subjects']; // array de materias
-        foreach ($subjects as $subject_id) // por cada materia seleccionada se hace un insert
-        {
+        foreach ($subjects as $subject_id) { // por cada materia seleccionada se hace un insert
             $sql = "INSERT INTO student_subject (id_student,id_subject) VALUES ($student_id,$subject_id)";
             $conn->query($sql);
         }
@@ -57,8 +51,7 @@ if (isset($_POST['new_student']))
 }
 
 // Eliminar un estudiante por id
-if (isset($_GET['delete_student']))
-{
+if (isset($_GET['delete_student'])) {
     $student_id = $_GET['delete_student'];
     $sql = "DELETE FROM students WHERE id_student = $student_id";
     $conn->query($sql);
@@ -66,8 +59,7 @@ if (isset($_GET['delete_student']))
 }
 
 // Editar un estudiante por id
-if (isset($_POST['edit_student_data']))
-{
+if (isset($_POST['edit_student_data'])) {
     $student_id = $_POST['student_id'];
     $tutor_id = $_POST['tutor_id'];
     $student_name = $_POST['student_name'];
@@ -76,15 +68,13 @@ if (isset($_POST['edit_student_data']))
     $conn->query($sql);
 
     // Obtener las materias selecionadas
-    if (isset($_POST['subjects']))
-    {
+    if (isset($_POST['subjects'])) {
         $subjects = $_POST['subjects'];
         // Borrar todas las materias del estudiante y volver a insertar las seleccionadas, la otra opción sería
         // obtener las viejas y compararlas con las nuevas
         $sql = "DELETE FROM student_subject WHERE id_student = $student_id"; // cheese
         $conn->query($sql);
-        foreach($subjects as $subject_id)
-        {
+        foreach ($subjects as $subject_id) {
             $sql = "INSERT INTO student_subject (id_student,id_subject) VALUES ($student_id,$subject_id)";
             $conn->query($sql);
         }
@@ -93,8 +83,7 @@ if (isset($_POST['edit_student_data']))
 }
 
 // Agregar un nuevo tutor
-if (isset($_POST['new_tutor']))
-{
+if (isset($_POST['new_tutor'])) {
     $tutor_name = $_POST['tutor_name'];
     $tutor_email = $_POST['tutor_email'];
     $career_id = $_POST['tutor_career'];
@@ -104,8 +93,7 @@ if (isset($_POST['new_tutor']))
 }
 
 // Eliminar un tutor por id
-if (isset($_GET['delete_tutor']))
-{
+if (isset($_GET['delete_tutor'])) {
     $tutor_id = $_GET['delete_tutor'];
     $sql = "DELETE FROM tutors WHERE id_tutor = $tutor_id";
     $conn->query($sql);
@@ -113,8 +101,7 @@ if (isset($_GET['delete_tutor']))
 }
 
 // Editar un tutor por id
-if (isset($_POST['edit_tutor']))
-{
+if (isset($_POST['edit_tutor'])) {
     $tutor_id = $_POST['tutor_id'];
     $tutor_name = $_POST['tutor_name'];
     $tutor_email = $_POST['tutor_email'];
@@ -125,8 +112,7 @@ if (isset($_POST['edit_tutor']))
 }
 
 // Agregar una nueva materia
-if (isset($_POST['new_subject']))
-{
+if (isset($_POST['new_subject'])) {
     $career_id = $_POST['career_id'];
     $subject_name = $_POST['subject_name'];
     $sql = "INSERT INTO subjects (id_career,subject_name) VALUES ($career_id,'$subject_name')";
@@ -135,8 +121,7 @@ if (isset($_POST['new_subject']))
 }
 
 // Eliminar una materia por id
-if (isset($_GET['delete_subject']))
-{
+if (isset($_GET['delete_subject'])) {
     $subject_id = $_GET['delete_subject'];
     $sql = "DELETE FROM subjects WHERE id_subject = $subject_id";
     $conn->query($sql);
@@ -144,8 +129,7 @@ if (isset($_GET['delete_subject']))
 }
 
 // Editar una materia por id
-if (isset($_POST['edit_subject']))
-{
+if (isset($_POST['edit_subject'])) {
     $subject_id = $_POST['subject_id'];
     $subject_name = $_POST['subject_name'];
     $sql = "UPDATE subjects SET subject_name = '$subject_name' WHERE id_subject = $subject_id";
@@ -154,8 +138,7 @@ if (isset($_POST['edit_subject']))
 }
 
 // Crear una nueva tutoría por id
-if (isset($_POST['new_tutoring']))
-{
+if (isset($_POST['new_tutoring'])) {
     $career_id = $_POST['career_id'];
     $subject_id = $_POST['subject_id'];
     $student_id = $_POST['student_id'];
@@ -168,8 +151,7 @@ if (isset($_POST['new_tutoring']))
 }
 
 // Eliminar una tutoría por id
-if (isset($_GET['delete_tutoring']))
-{
+if (isset($_GET['delete_tutoring'])) {
     $tutoring_id = $_GET['delete_tutoring'];
     $sql = "DELETE FROM tutoring_sessions WHERE id_tutoring = $tutoring_id";
     $conn->query($sql);

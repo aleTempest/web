@@ -69,8 +69,7 @@ $res = $conn->query($sql);
                         <tbody>
                         <?php
                         // iterar en los resultados de la consulta y imprimirlos en la tabla
-                        while ($row = $res->fetch_assoc())
-                        {
+                        while ($row = $res->fetch_assoc()) {
                             echo '<tr>';
                             echo '<td>' . $row['tutor_name'] . '</td>';
                             echo '<td>' . $row['tutor_email'] . '</td>';

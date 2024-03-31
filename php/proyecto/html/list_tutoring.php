@@ -62,8 +62,7 @@ $res = $conn->query($sql);
                         <form action="add_tutoring_form.php" method="post" class="d-flex align-items-center">
                             <select class="form-control" name="career_id">
                                 <?php
-                                while ($row = $res->fetch_assoc())
-                                {
+                                while ($row = $res->fetch_assoc()) {
                                     echo '<option value="' . $row['id_career'] . '">' . $row['career_name'] . '</option>';
                                 }
                                 ?>
@@ -86,8 +85,7 @@ $res = $conn->query($sql);
                         <?php
                         $sql = "SELECT * FROM tutoring_sessions_view ";
                         $res = $conn->query($sql);
-                        while ($row = $res->fetch_assoc())
-                        {
+                        while ($row = $res->fetch_assoc()) {
                             echo '<tr>';
                             echo '<td>' . $row['tutor_name'] . '</td>';
                             echo '<td>' . $row['student_name'] . '</td>';

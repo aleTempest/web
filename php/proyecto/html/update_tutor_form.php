@@ -81,8 +81,7 @@ $row = $conn->query($sql)->fetch_assoc();
                                 <?php
                                 $sql = "SELECT * FROM careers";
                                 $res = $conn->query($sql);
-                                while ($row = $res->fetch_assoc())
-                                {
+                                while ($row = $res->fetch_assoc()) {
                                     $selected = $row['id_career'] == $career_id ? 'selected' : '';
                                     echo "<option value='" . $row['id_career'] . "' $selected>" . $row['career_name'] . "</option>";
                                 }

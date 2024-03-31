@@ -63,8 +63,7 @@ $res = $conn->query($sql);
                         <form action="add_subject_form.php" class="d-flex align-items-center">
                             <select class="form-control" name="career_id" id="career_selected">
                                 <?php
-                                while ($row = $res->fetch_assoc())
-                                {
+                                while ($row = $res->fetch_assoc()) {
                                     echo '<option value="' . $row['id_career'] . '">' . $row['career_name'] . '</option>';
                                 }
                                 ?>
@@ -84,8 +83,7 @@ $res = $conn->query($sql);
                         <?php
                         $sql = "SELECT * FROM subject_career_view"; // resetear la consulta
                         $res = $conn->query($sql);
-                        while ($row = $res->fetch_assoc())
-                        {
+                        while ($row = $res->fetch_assoc()) {
                             echo '<tr id="' . $row['id_career'] .  '">';
                             echo '<td>' . $row['subject_name'] . '</td>';
                             // echo '<td>' . $row['career_name'] . '</td>'; // redundante

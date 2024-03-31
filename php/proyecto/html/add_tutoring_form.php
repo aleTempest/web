@@ -70,8 +70,9 @@ $res_students = $conn->query($sql3);
                             <label for="student_id" class="form-label">Alumno</label>
                             <select class="form-control" name="student_id" class="form-control">
                                 <?php
-                                while ($row_students = $res_students->fetch_assoc())
+                                while ($row_students = $res_students->fetch_assoc()) {
                                     echo "<option value='" . $row_students['id_student'] . "'>" . $row_students['student_name'] . "</option>";
+                                }
                                 ?>
                             </select>
                         </div>
@@ -79,8 +80,9 @@ $res_students = $conn->query($sql3);
                         <div class="mb-3">
                             <select name="tutor_id" class="form-control">
                                 <?php
-                                while ($row_tutors = $res_tutors->fetch_assoc())
+                                while ($row_tutors = $res_tutors->fetch_assoc()) {
                                     echo "<option value='" . $row_tutors['id_tutor'] . "'>" . $row_tutors['name'] . "</option>";
+                                }
                                 ?>
                             </select>
                         </div>
@@ -88,8 +90,9 @@ $res_students = $conn->query($sql3);
                         <div class="mb-3">
                             <select name="subject_id" class="form-control" >
                                 <?php
-                                while ($row_subjects = $res_subjects->fetch_assoc())
+                                while ($row_subjects = $res_subjects->fetch_assoc()) {
                                     echo "<option value='" . $row_subjects['id_subject'] . "'>" . $row_subjects['subject_name'] . "</option>";
+                                }
                                 ?>
                             </select>
                         </div>

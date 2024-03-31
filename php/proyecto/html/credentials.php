@@ -1,4 +1,5 @@
 <?php
+
 // Credenciales para la base de datos
 $servername = "db";
 $username = "root";

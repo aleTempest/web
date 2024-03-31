@@ -80,8 +80,7 @@ $res = $conn->query($sql);
                             <label class="form-label" for="tutor_career">Carrera</label>
                             <select class="form-control" name="tutor_career">
                                 <?php
-                                while ($row = $res->fetch_assoc())
-                                {
+                                while ($row = $res->fetch_assoc()) {
                                     echo '<option value="' . $row['id_career'] . '">' . $row['career_name'] . '</option>';
                                 }
                                 ?>

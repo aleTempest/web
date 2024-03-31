@@ -86,8 +86,7 @@ $res1 = $conn->query($sql1);
                                 <label for="student_career" class="form-label">Carrera</label>
                                 <select class="form-control" name="student_career" id="career">
                                     <?php
-                                    while ($row1 = $res1->fetch_assoc())
-                                    {
+                                    while ($row1 = $res1->fetch_assoc()) {
                                         // agrega cada carrera como opción del select
                                         echo '<option value="' . $row1['id_career'] . '">' . $row1['career_name'] . '</option>';
                                     }

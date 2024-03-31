@@ -1,7 +1,8 @@
 <?php
+
 require_once 'credentials.php';
 
-function get_subject_count() : int
+function get_subject_count(): int
 {
     global $conn;
     $sql = "SELECT COUNT(id_subject) as total FROM subjects";
@@ -9,7 +10,7 @@ function get_subject_count() : int
     return $row['total'];
 }
 
-function get_career_count() : int
+function get_career_count(): int
 {
     global $conn;
     $sql = "SELECT COUNT(id_career) as total FROM careers";
@@ -17,7 +18,7 @@ function get_career_count() : int
     return $row['total'];
 }
 
-function get_student_count() : int
+function get_student_count(): int
 {
     global $conn;
     $sql = "SELECT COUNT(id_student) as total FROM students";
@@ -25,7 +26,7 @@ function get_student_count() : int
     return $row['total'];
 }
 
-function get_tutor_count() : int
+function get_tutor_count(): int
 {
     global $conn;
     $sql = "SELECT COUNT(id_tutor) as total FROM tutors";

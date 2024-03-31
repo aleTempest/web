@@ -18,7 +18,7 @@ while ($row = $res_student->fetch_assoc())
 {
     $arr[] = $row['id_subject'];
 }*/
-$student_subject_id = array_map(function($row) {
+$student_subject_id = array_map(function ($row) {
     return $row['id_subject'];
 }, $res_student->fetch_all(MYSQLI_ASSOC));
 
@@ -108,18 +108,15 @@ $student_subject_id = array_map(function($row) {
                                 </thead>
                                 <tbody>
                                 <?php
-                                while ($row_career = $res_careers->fetch_assoc())
-                                {
+                                while ($row_career = $res_careers->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>" . $row_career['subject_name'] . "</td>";
                                     // Comprobar si la materia está seleccionada comprobando si el id actual se encuentra
                                     // en el id de las materias del estudiante, en caso verdadero el checkbox se marca
-                                    if (in_array($row_career['id_subject'], $student_subject_id))
-                                    {
+                                    if (in_array($row_career['id_subject'], $student_subject_id)) {
                                         echo '<td> <div class="form-check form-switch"> <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox" name="subjects[]" value="' . $row_career['id_subject'] . '" checked></div></td>';
                                     } // Caso contrario se deja desmarcado
-                                    else
-                                    {
+                                    else {
                                         echo '<td> <div class="form-check form-switch"> <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox" name="subjects[]" value="' . $row_career['id_subject'] . '"></div></td>';
                                     }
                                     echo "</tr>";
