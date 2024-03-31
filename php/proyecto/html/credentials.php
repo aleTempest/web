@@ -9,7 +9,6 @@ $dbname = "proyecto";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Checar si la conexión tuvo exitosa
-if ($conn->connect_error)
-{
+if ($conn->connect_error) {
     die("Conexión fallida" . $conn->connect_error);
 }
