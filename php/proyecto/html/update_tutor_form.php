@@ -60,6 +60,7 @@ $row = $conn->query($sql)->fetch_assoc();
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Datos del tutor</h5>
                     <form action="crud.php" method="post" class="needs-validation" novalidate>
+                        <input type="hidden" name="tutor_id" value="<?php echo $row['id_tutor'] ?>">
                         <label class="form-label" for="tutor_name">Nombre</label>
                         <div class="mb-3">
                             <input class="form-control" type="text" name="tutor_name" value="<?php echo $row['name'] ?>">
@@ -69,10 +70,24 @@ $row = $conn->query($sql)->fetch_assoc();
                         </div>
                         <label class="form-label" for="tutor_email">Email</label>
                         <div class="mb-3">
+                            <input class="form-control" type="text" name="tutor_email" value="<?php echo $row['email'] ?>">
                             <div class="invalid-feedback">
                                 Por favor, escribe un email.
                             </div>
-                            <input class="form-control" type="text" name="tutor_email" value="<?php echo $row['email'] ?>">
+                        </div>
+                        <label for="career_id">Carrera</label>
+                        <div class="mb-3">
+                            <select name="career_id" class="form-control">
+                                <?php
+                                $sql = "SELECT * FROM careers";
+                                $res = $conn->query($sql);
+                                while ($row = $res->fetch_assoc())
+                                {
+                                    $selected = $row['id_career'] == $career_id ? 'selected' : '';
+                                    echo "<option value='" . $row['id_career'] . "' $selected>" . $row['career_name'] . "</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
                         <button class="btn btn-success" name="edit_tutor">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
                     </form>

@@ -118,7 +118,7 @@ if (isset($_POST['edit_tutor']))
     $tutor_id = $_POST['tutor_id'];
     $tutor_name = $_POST['tutor_name'];
     $tutor_email = $_POST['tutor_email'];
-    $career_id = $_POST['tutor_career'];
+    $career_id = $_POST['career_id'];
     $sql = "UPDATE tutors SET name = '$tutor_name', email = '$tutor_email', id_career = $career_id WHERE id_tutor = $tutor_id";
     $conn->query($sql);
     header('Location: list_tutors.php');
