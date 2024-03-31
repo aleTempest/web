@@ -64,9 +64,9 @@ $res_students = $conn->query($sql3);
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Añadir tutoría</h5>
-                    <form action="crud.php" method="post">
+                    <form action="crud.php" method="post" class="needs-validation" novalidate>
+                        <input type="hidden" name="career_id" value="<?php echo $career_id ?>">
                         <div class="mb-3">
-                            <input type="hidden" name="career_id" value="<?php echo $career_id ?>">
                             <label for="student_id" class="form-label">Alumno</label>
                             <select class="form-control" name="student_id" class="form-control">
                                 <?php
@@ -74,24 +74,38 @@ $res_students = $conn->query($sql3);
                                     echo "<option value='" . $row_students['id_student'] . "'>" . $row_students['student_name'] . "</option>";
                                 ?>
                             </select>
-                            <label for="tutor_id" class="form-label">Tutor</label>
+                        </div>
+                        <label for="tutor_id" class="form-label">Tutor</label>
+                        <div class="mb-3">
                             <select name="tutor_id" class="form-control">
                                 <?php
                                 while ($row_tutors = $res_tutors->fetch_assoc())
                                     echo "<option value='" . $row_tutors['id_tutor'] . "'>" . $row_tutors['name'] . "</option>";
                                 ?>
                             </select>
-                            <label for="subject_id" class="form-label">Materia</label>
+                        </div>
+                        <label for="subject_id" class="form-label">Materia</label>
+                        <div class="mb-3">
                             <select name="subject_id" class="form-control" >
                                 <?php
                                 while ($row_subjects = $res_subjects->fetch_assoc())
                                     echo "<option value='" . $row_subjects['id_subject'] . "'>" . $row_subjects['subject_name'] . "</option>";
                                 ?>
                             </select>
-                            <label for="observations" class="form-label">Observaciones</label>
-                            <textarea type="text" name="observations" class="form-control" rows="3"></textarea>
-                            <label for="tutoring_date" class="form-label">Fecha</label>
-                            <input type="date" name="tutoring_date" class="form-control">
+                        </div>
+                        <label for="observations" class="form-label">Observaciones</label>
+                        <div class="mb-3">
+                            <textarea type="text" name="observations" class="form-control" rows="3" required></textarea>
+                            <div class="invalid-feedback">
+                                Por favor, escribe una observación.
+                            </div>
+                        </div>
+                        <label for="tutoring_date" class="form-label">Fecha</label>
+                        <div class="mb-3">
+                            <input type="date" name="tutoring_date" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Por favor, ingresa una fecha.
+                            </div>
                         </div>
                         <button name="new_tutoring" type="submit" class="btn btn-primary">Guardar</button>
                     </form>
@@ -105,6 +119,7 @@ $res_students = $conn->query($sql3);
 <script src="../assets/js/sidebarmenu.js"></script>
 <script src="../assets/js/app.min.js"></script>
 <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="form_validation.js"></script>
 </body>
 
 </html>

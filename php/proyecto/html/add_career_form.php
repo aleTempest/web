@@ -51,10 +51,15 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Añadir una nueva carrera</h5>
-                    <form method="post" action="crud.php">
+                    <form method="post" action="crud.php" class="needs-validation" novalidate>
                         <div class="mb-3">
                             <label for="career_name" class="form-label">Nombre de la carrera</label>
-                            <input name="career_name" type="text" class="form-control">
+                            <div class="input-group has-validation">
+                                <input name="career_name" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                <div class="invalid-feedback">
+                                    Por favor, escribe el nombre de la carrera.
+                                </div>
+                            </div>
                         </div>
                         <button name="new_career" type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
                     </form>
@@ -70,6 +75,7 @@
 <script src="../assets/js/sidebarmenu.js"></script>
 <script src="../assets/js/app.min.js"></script>
 <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="form_validation.js"></script>
 </body>
 
 </html>

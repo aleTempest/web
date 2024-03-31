@@ -153,6 +153,7 @@ if (isset($_POST['edit_subject']))
     header('Location: list_subjects.php');
 }
 
+// Crear una nueva tutoría por id
 if (isset($_POST['new_tutoring']))
 {
     $career_id = $_POST['career_id'];
@@ -166,6 +167,7 @@ if (isset($_POST['new_tutoring']))
     header('Location: list_tutoring.php');
 }
 
+// Eliminar una tutoría por id
 if (isset($_GET['delete_tutoring']))
 {
     $tutoring_id = $_GET['delete_tutoring'];
@@ -174,6 +176,7 @@ if (isset($_GET['delete_tutoring']))
     header('Location: list_tutoring.php');
 }
 
+// Editar una tutoría por id
 if (isset($_POST['update_tutoring'])) {
     $tutoring_id = $_POST['tutoring_id'];
     $student_id = $_POST['student_id'];

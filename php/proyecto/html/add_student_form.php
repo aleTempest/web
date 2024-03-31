@@ -63,39 +63,45 @@ $res1 = $conn->query($sql1);
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title fw-semibold mb-4">Añadir estudiante</h5>
-                        <div class="card">
-                            <div class="card-body">
-                                <form method="post" action="add_student.php" id="studentForm">
-                                    <div class="mb-3">
-                                        <label for="student_email" class="form-label">Email</label>
-                                        <input name="student_email" type="email" class="form-control" aria-describedby="emailHelp">
-                                        <div id="emailHelp" class="form-text">Nunca compartiremos el email con nadie más</div>
+                        <form method="post" action="add_student.php" id="studentForm" class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label for="student_email" class="form-label">Email</label>
+                                <div class="input-group has-validation">
+                                    <input name="student_email" type="email" class="form-control" aria-describedby="emailHelp" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, escribe un email válido.
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="student_name" class="form-label">Nombre</label>
-                                        <input name="student_name" type="text" class="form-control">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="student_career" class="form-label">Carrera</label>
-                                        <select class="form-control" name="student_career" id="career">
-                                            <?php
-                                            while ($row1 = $res1->fetch_assoc())
-                                            {
-                                                // agrega cada carrera como opción del select
-                                                echo '<option value="' . $row1['id_career'] . '">' . $row1['career_name'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <button name="new_student" type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
-                                </form>
+                                </div>
                             </div>
-                        </div>
+                            <div class="mb-3">
+                                <label for="student_name" class="form-label">Nombre</label>
+                                <div class="input-group has-validation">
+                                    <input name="student_name" type="text" class="form-control" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, escribe un nombre válido.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="student_career" class="form-label">Carrera</label>
+                                <select class="form-control" name="student_career" id="career">
+                                    <?php
+                                    while ($row1 = $res1->fetch_assoc())
+                                    {
+                                        // agrega cada carrera como opción del select
+                                        echo '<option value="' . $row1['id_career'] . '">' . $row1['career_name'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <button name="new_student" type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="form_validation.js" ></script>
     <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/sidebarmenu.js"></script>

@@ -55,11 +55,16 @@ $career_id = $_GET['career_id'];
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Añadir materia</h5>
-                    <form method="post" action="crud.php">
+                    <form method="post" action="crud.php" class="needs-validation" novalidate>
                         <div class="mb-3">
                             <input type="hidden" name="career_id" value="<?php echo $career_id?>">
                             <label for="subject_name" class="form-label">Nombre de la materia</label>
-                            <input name="subject_name" type="text" class="form-control">
+                            <div class="input-group has-validation">
+                                <input name="subject_name" type="text" class="form-control" required>
+                                <div class="invalid-feedback">
+                                    Por favor, escribe una materia.
+                                </div>
+                            </div>
                         </div>
                         <button name="new_subject" type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
                     </form>
@@ -73,6 +78,7 @@ $career_id = $_GET['career_id'];
 <script src="../assets/js/sidebarmenu.js"></script>
 <script src="../assets/js/app.min.js"></script>
 <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="form_validation.js"></script>
 </body>
 
 </html>
