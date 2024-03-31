@@ -57,11 +57,16 @@ $row = $conn->query($sql)->fetch_assoc();
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Añadir una nueva carrera</h5>
-                    <form method="post" action="crud.php">
+                    <form method="post" action="crud.php" class="needs-validation" novalidate>
                         <div class="mb-3">
                             <input type="hidden" value="<?php echo $row['id_career'] ?>" name="career_id">
                             <label for="career_name" class="form-label">Nombre de la carrera</label>
-                            <input value="<?php echo $row['career_name'] ?>" name="career_name" type="text" class="form-control">
+                            <div class="input-group has-validation">
+                                <input value="<?php echo $row['career_name'] ?>" name="career_name" type="text" class="form-control" required>
+                                <div class="invalid-feedback">
+                                    Por favor, escribe el nombre de la carrera.
+                                </div>
+                            </div>
                         </div>
                         <button name="edit_career" type="submit" class="btn btn-primary">Guardar</button>
                     </form>
@@ -77,6 +82,7 @@ $row = $conn->query($sql)->fetch_assoc();
 <script src="../assets/js/sidebarmenu.js"></script>
 <script src="../assets/js/app.min.js"></script>
 <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="form_validation.js"></script>
 </body>
 
 </html>

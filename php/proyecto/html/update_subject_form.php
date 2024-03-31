@@ -59,12 +59,15 @@ $row = $conn->query($sql)->fetch_assoc();
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Editar materia</h5>
-                    <form method="post" action="crud.php">
+                    <form method="post" action="crud.php" class="needs-validation" novalidate>
+                        <input type="hidden" name="career_id" value="<?php echo $row['id_career'] ?>">
+                        <input type="hidden" name="subject_id" value="<?php echo $row['id_subject'] ?>">
+                        <label for="subject_name" class="form-label">Nombre de la materia</label>
                         <div class="mb-3">
-                            <input type="hidden" name="career_id" value="<?php echo $row['id_career'] ?>">
-                            <input type="hidden" name="subject_id" value="<?php echo $row['id_subject'] ?>">
-                            <label for="subject_name" class="form-label">Nombre de la materia</label>
-                            <input name="subject_name" type="text" class="form-control" value="<?php echo $row['subject_name'] ?>">
+                            <input name="subject_name" type="text" class="form-control" value="<?php echo $row['subject_name'] ?>" required>
+                            <div class="invalid-feedback">
+                                Por favor, escribe una materia.
+                            </div>
                         </div>
                         <button name="edit_subject" type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-floppy-disk"></i></button>
                     </form>
@@ -78,6 +81,7 @@ $row = $conn->query($sql)->fetch_assoc();
 <script src="../assets/js/sidebarmenu.js"></script>
 <script src="../assets/js/app.min.js"></script>
 <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="form_validation.js"></script>
 </body>
 
 </html>

@@ -177,7 +177,7 @@ if (isset($_GET['delete_tutoring']))
 }
 
 // Editar una tutoría por id
-if (isset($_POST['update_tutoring'])) {
+if (isset($_POST['edit_tutoring'])) {
     $tutoring_id = $_POST['tutoring_id'];
     $student_id = $_POST['student_id'];
     $tutor_id = $_POST['tutor_id'];

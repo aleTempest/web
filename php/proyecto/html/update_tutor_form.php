@@ -59,11 +59,19 @@ $row = $conn->query($sql)->fetch_assoc();
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Datos del tutor</h5>
-                    <form action="crud.php">
+                    <form action="crud.php" method="post" class="needs-validation" novalidate>
+                        <label class="form-label" for="tutor_name">Nombre</label>
                         <div class="mb-3">
-                            <label class="form-label" for="tutor_name">Nombre</label>
                             <input class="form-control" type="text" name="tutor_name" value="<?php echo $row['name'] ?>">
-                            <label class="form-label" for="tutor_email">Email</label>
+                            <div class="invalid-feedback">
+                                Por favor, escribe un nombre.
+                            </div>
+                        </div>
+                        <label class="form-label" for="tutor_email">Email</label>
+                        <div class="mb-3">
+                            <div class="invalid-feedback">
+                                Por favor, escribe un email.
+                            </div>
                             <input class="form-control" type="text" name="tutor_email" value="<?php echo $row['email'] ?>">
                         </div>
                         <button class="btn btn-success" name="edit_tutor">Guardar <i class="fa-solid fa-floppy-disk"></i></button>

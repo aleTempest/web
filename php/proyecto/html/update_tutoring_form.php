@@ -70,10 +70,11 @@ $res_tutoring = $conn->query($sql4);
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Añadir tutoría</h5>
-                    <form action="crud.php" method="post">
+                    <form action="crud.php" method="post" class="needs-validation" novalidate>
+                        <input type="hidden" name="tutoring_id" value="<?php echo $id ?>">
+                        <input type="hidden" name="career_id" value="<?php echo $career_id ?>">
+                        <label for="student_id" class="form-label">Alumno</label>
                         <div class="mb-3">
-                            <input type="hidden" name="career_id" value="<?php echo $career_id ?>">
-                            <label for="student_id" class="form-label">Alumno</label>
                             <select class="form-control" name="student_id" class="form-control">
                                 <?php
                                 while ($row_students = $res_students->fetch_assoc())
@@ -83,7 +84,9 @@ $res_tutoring = $conn->query($sql4);
                                 }
                                 ?>
                             </select>
-                            <label for="tutor_id" class="form-label">Tutor</label>
+                        </div>
+                        <label for="tutor_id" class="form-label">Tutor</label>
+                        <div class="mb-3">
                             <select name="tutor_id" class="form-control">
                                 <?php
                                 while ($row_tutors = $res_tutors->fetch_assoc())
@@ -93,7 +96,9 @@ $res_tutoring = $conn->query($sql4);
                                 }
                                 ?>
                             </select>
-                            <label for="subject_id" class="form-label">Materia</label>
+                        </div>
+                        <label for="subject_id" class="form-label">Materia</label>
+                        <div class="mb-3">
                             <select name="subject_id" class="form-control" >
                                 <?php
                                 while ($row_subjects = $res_subjects->fetch_assoc())
@@ -103,17 +108,24 @@ $res_tutoring = $conn->query($sql4);
                                 }
                                 ?>
                             </select>
-                            <label for="observations" class="form-label">Observaciones</label>
+                        </div>
+                        <label for="observations" class="form-label">Observaciones</label>
+                        <div class="mb-3">
                             <textarea type="text" name="observations" class="form-control" rows="3">
                                 <?php
                                 $row = $res_tutoring->fetch_assoc();
                                 echo $row['observations'];
                                 ?>
                             </textarea>
-                            <label for="tutoring_date" class="form-label" >Fecha</label>
-                            <input type="date" name="tutoring_date" class="form-control" value="<?php echo $row['tutoring_date'] ?>">
                         </div>
-                        <button name="new_tutoring" type="submit" class="btn btn-primary">Guardar</button>
+                        <label for="tutoring_date" class="form-label" >Fecha</label>
+                        <div class="mb-3">
+                            <input type="date" name="tutoring_date" class="form-control" value="<?php echo $row['tutoring_date'] ?>">
+                            <div class="invalid-feedback">
+                                Por favor, escribe una descripción.
+                            </div>
+                        </div>
+                        <button name="edit_tutoring" type="submit" class="btn btn-primary">Guardar</button>
                     </form>
                 </div>
             </div>
@@ -125,6 +137,7 @@ $res_tutoring = $conn->query($sql4);
 <script src="../assets/js/sidebarmenu.js"></script>
 <script src="../assets/js/app.min.js"></script>
 <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="form_validation.js"></script>
 </body>
 
 </html>
