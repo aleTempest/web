@@ -171,3 +171,38 @@ if (isset($_POST['edit_tutoring'])) {
     $conn->query($sql);
     header('Location: list_tutoring.php');
 }
+
+// Crear una nueva asesoría por id
+if (isset($_POST['new_consulting'])) {
+    $career_id = $_POST['career_id'];
+    $subject_id = $_POST['subject_id'];
+    $student_id = $_POST['student_id'];
+    $tutor_id = $_POST['tutor_id'];
+    $observations = $_POST['observations'];
+    $date = $_POST['consulting_date'];
+    $sql = "INSERT INTO consulting_sessions (id_career,id_student,id_tutor,id_subject,observations,tutoring_date) VALUES ($career_id,$student_id,$tutor_id,$subject_id,'$observations','$date')";
+    $conn->query($sql);
+    header('Location: list_consulting.php');
+}
+
+// Eliminar una tutoría por id
+if (isset($_GET['delete_consulting'])) {
+    $consulting_id = $_GET['delete_consulting'];
+    $sql = "DELETE FROM consulting_sessions WHERE id_consulting = $consulting_id";
+    $conn->query($sql);
+    header('Location: list_consulting.php');
+}
+
+// Editar una tutoría por id
+if (isset($_POST['edit_consulting'])) {
+    $consulting_id = $_POST['tutoring_id'];
+    $student_id = $_POST['student_id'];
+    $tutor_id = $_POST['tutor_id'];
+    $subject_id = $_POST['subject_id'];
+    $observations = $_POST['observations'];
+    $tutoring_date = $_POST['consulting_date'];
+
+    $sql = "UPDATE consulting_sessions SET id_student = $student_id, id_tutor = $tutor_id, id_subject = $subject_id, observations = '$observations', tutoring_date = '$tutoring_date' WHERE id_consulting = $consulting_id";
+    $conn->query($sql);
+    header('Location: list_consulting.php');
+}

@@ -33,3 +33,19 @@ function get_tutor_count(): int
     $row = $conn->query($sql)->fetch_assoc();
     return $row['total'];
 }
+
+function get_tutoring(): int
+{
+    global $conn;
+    $sql = "SELECT COUNT(id_tutoring) as total FROM tutoring_sessions";
+    $row = $conn->query($sql)->fetch_assoc();
+    return $row['total'];
+}
+
+function get_consulting(): int
+{
+    global $conn;
+    $sql = "SELECT COUNT(id_consulting) as total FROM consulting_sessions";
+    $row = $conn->query($sql)->fetch_assoc();
+    return $row['total'];
+}
