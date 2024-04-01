@@ -2,6 +2,11 @@
 
 require_once 'credentials.php';
 
+/*
+ * Este archivo contiene funciones para obtener el numero de filas de varias
+ * tablas en la base de datos.
+ * */
+
 function get_subject_count(): int
 {
     global $conn;

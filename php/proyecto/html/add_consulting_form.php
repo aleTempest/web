@@ -6,6 +6,7 @@ $sql1 = "SELECT * FROM subjects WHERE id_career = $career_id";
 $sql2 = "SELECT * FROM tutors WHERE id_career = $career_id";
 $sql3 = "SELECT * FROM students WHERE id_career = $career_id";
 
+// consultas con los datos del formulario
 $res_subjects = $conn->query($sql1);
 $res_tutors = $conn->query($sql2);
 $res_students = $conn->query($sql3);
@@ -24,7 +25,8 @@ $res_students = $conn->query($sql3);
 
 <body>
     <!--  Body Wrapper -->
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
@@ -51,7 +53,8 @@ $res_students = $conn->query($sql3);
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav">
                         <li class="nav-item d-block d-xl-none">
-                            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse"
+                                href="javascript:void(0)">
                                 <i class="ti ti-menu-2"></i>
                             </a>
                         </li>
@@ -64,6 +67,7 @@ $res_students = $conn->query($sql3);
                     <div class="card-body">
                         <h5 class="card-title fw-semibold mb-4">Añadir asesoría</h5>
                         <form action="crud.php" method="post" class="needs-validation" novalidate>
+                            <!-- Cada uno de los selects es llenado iterando en cada una de sus consultas respectivas -->
                             <input type="hidden" name="career_id" value="<?php echo $career_id ?>">
                             <div class="mb-3">
                                 <label for="student_id" class="form-label">Alumno</label>
@@ -97,7 +101,8 @@ $res_students = $conn->query($sql3);
                             </div>
                             <label for="observations" class="form-label">Observaciones</label>
                             <div class="mb-3">
-                                <textarea type="text" name="observations" class="form-control" rows="3" required></textarea>
+                                <textarea type="text" name="observations" class="form-control" rows="3"
+                                    required></textarea>
                                 <div class="invalid-feedback">
                                     Por favor, escribe una observación.
                                 </div>

@@ -5,6 +5,7 @@ $student_email = $_POST['student_email'];
 $student_name = $_POST['student_name'];
 $career_id = $_POST['student_career'];
 
+// consultas con los datos del formulario
 $sql1 = "SELECT * FROM tutors WHERE id_career = $career_id";
 $sql2 = "SELECT * FROM subjects WHERE id_career = $career_id";
 $tutors_res = $conn->query($sql1);

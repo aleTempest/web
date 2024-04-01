@@ -5,13 +5,14 @@ require_once 'credentials.php';
  * */
 function make_file(string $file_name, string $file_str): void
 {
-    $file = fopen($file_name, 'w'); // abrir el archivo donde se guarda el reporte
-    fwrite($file, $file_str); // Escribir el contenido del reporte
-    fclose($file); // cerrar el archivo
+    // abrir el archivo donde se guarda el reporte
+    $file = fopen($file_name, 'w');
+    fwrite($file, $file_str);
+    fclose($file);
     header("Content-Type: application/csv; charset=UTF-8");
     header('Content-Disposition: attachment; filename=' . $file_name);
     readfile($file_name);
-    die; // sin esta linea de codigo se imprime un mensaje de error dentro del archivo
+    die; // sin esta linea, se imprime un error en el csv
 }
 
 /* Esta función convierte un resultado de una consulta a un string en
@@ -24,7 +25,12 @@ function row_to_csv($res): string
     while ($row = $res->fetch_assoc()) {
         $k = 0;
         foreach ($row as $col) {
-            // Esto asegura no imprimir una coma si $row es la ultima columna
+            /*
+            * se concatena cada columna separada por una coma y se asegura no
+            * imprimir una coma en la ultima columna. al parecer también se
+            * puede usar implode()
+            * https://www.php.net/manual/es/function.implode.php
+            * */
             $str .= $k == count($row) - 1 ? $col : $col . ',';
             $k++;
         }
@@ -49,6 +55,7 @@ if (isset($_POST['tutor_report'])) {
     make_file('reporte_tutores.csv', $file_str);
 }
 
+// Reporte de tutorias
 if (isset($_POST['tutoring_report'])) {
     $sql = "SELECT * FROM tutoring_report";
     $res = $conn->query($sql);
@@ -56,6 +63,7 @@ if (isset($_POST['tutoring_report'])) {
     make_file('reporte_tutorias.csv', $file_str);
 }
 
+// Reporte de asesorías
 if (isset($_POST['consulting_report'])) {
     $sql = "SELECT * FROM consulting_report";
     $res = $conn->query($sql);
@@ -63,5 +71,4 @@ if (isset($_POST['consulting_report'])) {
     make_file('reporte_asesorias.csv', $file_str);
 }
 
-// No se necesita ponerlo en cada if ya que todos redirigen a la misma página
 header('Location: index.php');

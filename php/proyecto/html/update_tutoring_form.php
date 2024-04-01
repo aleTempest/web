@@ -1,16 +1,19 @@
 <?php
 require_once 'credentials.php';
 
+// ids traidos del anterior formulario
 $id = $_GET['id'];
 $student_id = $_GET['id_student'];
 $career_id = $_GET['id_career'];
 $tutor_id = $_GET['id_tutor'];
 $subject_id = $_GET['id_subject'];
+
 $sql1 = "SELECT * FROM subjects WHERE id_career = $career_id";
 $sql2 = "SELECT * FROM tutors WHERE id_career = $career_id";
 $sql3 = "SELECT * FROM students WHERE id_career = $career_id";
 $sql4 = "SELECT * FROM tutoring_sessions WHERE id_tutoring = $id";
 
+// consultas con datos para el formulario
 $res_subjects = $conn->query($sql1);
 $res_tutors = $conn->query($sql2);
 $res_students = $conn->query($sql3);
@@ -76,6 +79,7 @@ $res_tutoring = $conn->query($sql4);
                             <div class="mb-3">
                                 <select class="form-control" name="student_id" class="form-control">
                                     <?php
+                                    // explicación en update_consulting_form.php
                                     while ($row_students = $res_students->fetch_assoc()) {
                                         $selected = $row_students['id_student'] == $student_id ? 'selected' : '';
                                         echo "<option value='" . $row_students['id_student'] . "' $selected>" . $row_students['student_name'] . "</option>";
@@ -108,11 +112,11 @@ $res_tutoring = $conn->query($sql4);
                             <label for="observations" class="form-label">Observaciones</label>
                             <div class="mb-3">
                                 <textarea type="text" name="observations" class="form-control" rows="3">
-                                <?php
-                                $row = $res_tutoring->fetch_assoc();
-                                echo $row['observations'];
-                                ?>
-                            </textarea>
+                                    <?php
+                                    $row = $res_tutoring->fetch_assoc();
+                                    echo $row['observations'];
+                                    ?>
+                                </textarea>
                             </div>
                             <label for="tutoring_date" class="form-label">Fecha</label>
                             <div class="mb-3">
