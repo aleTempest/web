@@ -1,5 +1,5 @@
 <?php
-class Catalog 
+class Catalog
 {
 	private int $id;
 	private string $desc;
@@ -29,5 +29,4 @@ class Catalog
 	{
 		return $this->id;
 	}
-
 }
