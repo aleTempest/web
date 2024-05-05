@@ -20,6 +20,7 @@ class CareerController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name = $_POST['career_name'];
+            // validar la query
             if ($this->careerModel->createCareer($name)) {
                 echo 'asies';
             } else {
@@ -35,12 +36,14 @@ class CareerController
         $id = $_GET['id'];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name = $_POST['career_name'];
+            // validar la query
             if ($this->careerModel->updateCareer($id, $name)) {
                 echo 'asies';
             } else {
                 echo 'error';
             }
         } else {
+            // obtener la carrera
             $career = $this->careerModel->getCareer($id);
             include '../views/careers/update.php';
         }

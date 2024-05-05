@@ -63,7 +63,7 @@ class UserController
             $type = $_POST['type'] == 0 ? 'student' : 'teacher';
 
             if ($this->userModel->createUser($username, $password, $email, $enrollment, $phone, $date, $type))
-                echo 'usuario agregado';
+                echo 'asies';
             else echo 'error';
             // TODO validar si el usuario ya existe
         } else include '../views/register.php';
@@ -73,7 +73,7 @@ class UserController
     {
         // TODO validar que no se pueda eliminar el usuario de la sesión
         $id = $_GET['id'];
-        if ($this->userModel->deleteUser($id)) echo 'usuario eliminado';
+        if ($this->userModel->deleteUser($id)) echo 'asies';
         else echo 'error';
     }
 
