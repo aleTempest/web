@@ -30,16 +30,6 @@
             <!-- Page Content -->
             <main>
                 @yield('content')
-                <div class="row justify-content-center text-center mt-3">
-                    <div class="col-md-12">
-                        <p class="text-gray-600">
-                            UPV 2024
-                        </p>
-                        <p class="text-gray-600">
-                            Derechos reservados 2024
-                        </p>
-                    </div>
-                </div>
             </main>
         </div>
     </body>
