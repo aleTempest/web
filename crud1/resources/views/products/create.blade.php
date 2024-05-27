@@ -17,7 +17,6 @@
             <div class="card-body">
                 <form action="{{ route('products.store') }}" method="post">
                     @csrf
-
                     <div class="mb-3 row">
                         <label for="code" class="col-md-4 col-form-label text-md-end text-start">Código</label>
                         <div class="col-md-6">
@@ -67,15 +66,15 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="mb-3 row">
                         <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Add Product">
                     </div>
-                    
+
                 </form>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
-    
+
 @endsection
