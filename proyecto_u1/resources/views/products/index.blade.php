@@ -8,7 +8,7 @@
                         <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
                         <tr>
                             <th class="px-6 py-4">
-                                <a href="{{ route('products.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('products.create') }}" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                     New
                                 </a>
                             </th>

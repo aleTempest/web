@@ -16,7 +16,7 @@ return new class extends Migration
 
         Schema::create('categories', function (Blueprint $table) {
             $table->id('cat_id')->primary();
-            $table->string('name');
+            $table->string('name')->default();
             $table->timestamps();
         });
         Schema::create('products', function (Blueprint $table) {
@@ -25,8 +25,8 @@ return new class extends Migration
             // admitir esa constraint
             $table->foreignId('cat_id')->nullable()->references('cat_id')->on('categories')->nullOnDelete();
             $table->string('name');
-            $table->float('pv');
-            $table->float('pc');
+            $table->decimal('pv',8,2)->default(0);
+            $table->decimal('pc',8,2)->default(0);
             $table->string('colors');
             $table->date('purchase_date');
             $table->text('short_desc')->nullable();

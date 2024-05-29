@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
@@ -26,7 +26,9 @@ class ProductsController extends Controller
      */
     public function create(): View
     {
-        return view('products.create');
+        // esta variable es necesaria para seleccionar una categoría desde el formulario
+        $categories = Category::all();
+        return view('products.create', compact('categories'));
     }
 
     /**
@@ -37,7 +39,7 @@ class ProductsController extends Controller
         Product::create($request->validated());
 
         return redirect()->route('products.index')
-            ->withSuccess('Nuevo producto agregado.');
+            ->withSuccess('New product updated');
     }
 
     /**

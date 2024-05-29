@@ -12,16 +12,19 @@ class Product extends Model
 
     protected $primaryKey = 'product_id';
     protected $fillable = [
-        'code',
+        'cat_id',
         'name',
-        'quantity',
-        'price',
-        'description'
+        'colors',
+        'purchase_date',
+        'pv',
+        'pc',
+        'short_desc',
+        'long_desc'
     ];
 
     // Relación de uno a uno, un producto tiene una categoría
     public function category() : HasOne
     {
-        return $this->hasOne(Category::class, 'category_id');
+        return $this->hasOne(Category::class, 'cat_id');
     }
 }

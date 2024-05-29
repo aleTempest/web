@@ -19,7 +19,7 @@
                         {{ __('Products') }}
                     </x-nav-link>
                     <!-- La ruta se queda en dashboard hasta que realmente exista-->
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('categories')">
+                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')">
                         {{ __('Categories') }}
                     </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('inventory')">
