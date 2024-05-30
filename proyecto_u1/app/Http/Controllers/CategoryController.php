@@ -13,7 +13,7 @@ class CategoryController extends Controller
     public function index(): View
     {
         return view('categories.index', [
-            'categories' => Category::latest()->paginate(4)
+            'categories' => Category::all()
         ]);
     }
     public function create() : View

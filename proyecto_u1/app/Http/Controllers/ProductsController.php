@@ -17,7 +17,7 @@ class ProductsController extends Controller
     public function index(): View
     {
         return view('products.index', [
-            'products' => Product::latest()->paginate(4)
+            'products' => Product::all()
         ]);
     }
 
@@ -47,7 +47,8 @@ class ProductsController extends Controller
      */
     public function show(Product $product): View
     {
-        return view('products.show', compact('product'));
+        $categories = Category::all();
+        return view('products.show', compact('categories','product'));
     }
 
     /**
@@ -55,7 +56,8 @@ class ProductsController extends Controller
      */
     public function edit(Product $product): View
     {
-        return view('products.edit', compact('product'));
+        $categories = Category::all();
+        return view('products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -65,7 +67,7 @@ class ProductsController extends Controller
     {
         $product->update($request->validated());
 
-        return redirect()->back()
+        return redirect()->route('products.index')
             ->withSuccess('Product is updated successfully.');
     }
 

@@ -25,8 +25,7 @@
                                     <form action="{{ route('categories.destroy', $category->cat_id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="{{ route('products.show', $category->cat_id) }}" class="bg-yellow-300 hover:bg-yellow-400 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-500 rounded">Show</a>
-                                        <a href="{{ route('products.edit', $category->cat_id) }}" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Edit</a>
+                                        <a href="{{ route('categories.edit', $category->cat_id) }}" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Edit</a>
                                         <button type="submit" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded" onclick="return confirm('Do you want to delete this product?');">Delete</button>
                                     </form>
                                 </td>
