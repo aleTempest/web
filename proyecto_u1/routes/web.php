@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
@@ -26,6 +27,7 @@ Route::get('/products', function (){
 Route::middleware('auth')->group(function () {
     Route::resource('products', ProductsController::class);
     Route::resource('categories', CategoryController::class);
+    Route::resource('inventory', ItemsController::class);
 });
 
 require __DIR__.'/auth.php';

@@ -47,7 +47,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="10" class="text-center py-4">
+                                <td>
                                     <strong>No Product Found!</strong>
                                 </td>
                             </tr>
